@@ -1,4 +1,4 @@
-import { Product } from './types/product';
+import { Product } from '../types/product';
 
 export const list: Product[] = [
     {
@@ -6,28 +6,28 @@ export const list: Product[] = [
         name: 'Samsung Galaxy A55',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-a556ezklzto/gallery/br-galaxy-a55-5g-sm-a556-sm-a556ezklzto-540317359?$650_519_PNG$",
         price: 2299.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a55-5g-awesome-iceblue-256gb-sm-a556elbmzto/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a55-5g-awesome-iceblue-256gb-sm-a556elbmzto/",
     },
     {
         id: 2,
         name: 'Samsung Galaxy A54',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-a546ezkczto/gallery/br-galaxy-a54-5g-sm-a546-sm-a546ezkczto-535806807?$650_519_PNG$",
         price: 2199.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a54-5g-awesome-black-128gb-sm-a546ezkczto/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a54-5g-awesome-black-128gb-sm-a546ezkczto/",
     },
     {
         id: 3,
         name: 'Samsung Galaxy A35',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-a356ezkbzto/gallery/br-galaxy-a35-5g-sm-a356-sm-a356ezkbzto-540316162?$650_519_PNG$",
         price: 1799.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a35-5g-awesome-iceblue-256gb-sm-a356elbgzto/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a35-5g-awesome-iceblue-256gb-sm-a356elbgzto/",
     },
     {
         id: 4,
         name: 'Samsung Galaxy A25',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-a256ezbhzto/gallery/br-galaxy-a25-5g-sm-a256-sm-a256ezbhzto-539575976?$650_519_PNG$",
         price: 1599.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a25-5g-blue-256gb-sm-a256ezbhzto/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a25-5g-blue-256gb-sm-a256ezbhzto/",
     },
     {
         id: 5,
@@ -39,23 +39,23 @@ export const list: Product[] = [
     {
         id: 6,
         name: 'Samsung Galaxy S24 Ultra',
-        image: "https://samsungbrshop.vtexassets.com/arquivos/ids/227220-600-auto?v=638405122871270000&width=600&height=auto&aspect=true",
+        image: "dddsgdsgsgds",
         price: 7999.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-s24-ultra/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-s24-ultra/",
     },
     {
         id: 7,
         name: 'Samsung Galaxy S22',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-s901ezkyzto/gallery/br-galaxy-s22-s901-487112-sm-s901ezkyzto-539199479?$650_519_PNG$",
         price: 4499.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-s/galaxy-s22-phantom-black-256gb-sm-s901ezkyzto/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-s/galaxy-s22-phantom-black-256gb-sm-s901ezkyzto/",
     },
     {
         id: 8,
         name: 'Samsung Galaxy Tab S9',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-x910nzahzto/gallery/br-galaxy-tab-s9-ultra-wifi-x910-sm-x910nzahzto-540368878?$650_519_PNG$",
         price: 6999.99,
-        url:"https://www.samsung.com/br/tablets/galaxy-tab-s/galaxy-tab-s9-wi-fi-graphite-256gb-sm-x710nzahzto/",
+        url: "https://www.samsung.com/br/tablets/galaxy-tab-s/galaxy-tab-s9-wi-fi-graphite-256gb-sm-x710nzahzto/",
     },
     {
         id: 9,
@@ -83,7 +83,7 @@ export const list: Product[] = [
         name: 'Samsung Galaxy M55',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-m556bzkmzto/gallery/br-galaxy-m55-5g-sm-m556-sm-m556bzkmzto-540788152?$650_519_PNG$",
         price: 2299.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-m/galaxy-m55-5g-black-256gb-sm-m556bzkmzto/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-m/galaxy-m55-5g-black-256gb-sm-m556bzkmzto/",
     },
     {
         id: 13,
@@ -97,45 +97,31 @@ export const list: Product[] = [
         name: 'Samsung Galaxy M15',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-m156bdbjzto/gallery/br-galaxy-m15-5g-sm-m156-sm-m156bdbjzto-540932973?$650_519_PNG$",
         price: 1299.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-m/galaxy-m15-5g-dark-blue-128gb-sm-m156bdbjzto/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-m/galaxy-m15-5g-dark-blue-128gb-sm-m156bdbjzto/",
     },
     {
         id: 15,
         name: 'Samsung Galaxy M34',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-m346bzbdzto/gallery/br-galaxy-m34-5g-sm-m346-sm-m346bzbdzto-538063722?$650_519_PNG$",
         price: 1599.99,
-        url:"https://www.samsung.com/br/smartphones/galaxy-m/galaxy-m34-5g-blue-128gb-sm-m346bzbdzto/",
+        url: "https://www.samsung.com/br/smartphones/galaxy-m/galaxy-m34-5g-blue-128gb-sm-m346bzbdzto/",
     },
     {
         id: 16,
-        name: 'Samsung Galaxy Watch6 Classic LTE',
-        image: "https://samsungbrshop.vtexassets.com/arquivos/ids/221827-600-auto?v=638309881062600000&width=600&height=auto&aspect=true",
-        price: 2499.99,
-        url: "https://shop.samsung.com/br/galaxy-watch6-classic-lte-43mm/p?_gl=1*1dkulsj*_gcl_au*NTQyNzUzNTQuMTcyNDc2MTAyOQ..*FPAU*MTk1ODM1NDI2Ny4xNzI0NzYxMDMw",
-    },
-    {
-        id: 17,
-        name: 'Samsung Galaxy Watch Ultra',
-        image: "https://images.samsung.com/is/image/samsung/p6pim/br/2407/gallery/br-galaxy-watch-ultra-l705-sm-l705fztazto-542171226?$650_519_PNG$",
-        price: 3499.99,
-        url: "https://www.samsung.com/br/watches/galaxy-watch/galaxy-watch-ultra-titanium-gray-lte-sm-l705fdaazto/",
-    },
-    {
-        id: 18,
         name: 'Samsung Galaxy Fit 3',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-r390nzaazto/gallery/br-galaxy-fit3-r390-sm-r390nzaazto-539970886?$2052_1641_PNG$",
         price: 599.99,
         url: "https://www.samsung.com/br/watches/galaxy-fit/galaxy-fit3-gray-bluetooth-sm-r390nzaazto/",
     },
     {
-        id: 19,
+        id: 17,
         name: 'Samsung Galaxy Buds Pro',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/2407/gallery/br-galaxy-buds3-pro-r630-sm-r630nzaazto-542147381?$1300_1038_PNG$",
         price: 899.99,
         url: "https://www.samsung.com/br/audio-sound/galaxy-buds/galaxy-buds3-pro-silver-sm-r630nzaazto/",
     },
     {
-        id: 20,
+        id: 18,
         name: 'Samsung Galaxy Buds FE',
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-r400nzapzto/gallery/br-galaxy-buds-fe-sm-r400nzapzto-538446332?$684_547_PNG$",
         price: 699.99,

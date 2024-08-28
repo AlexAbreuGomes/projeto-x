@@ -20,9 +20,9 @@ export const ProductItem = (props: Props) => {
             />
             <View style={styles.infoProduct}>
                 <Text style={styles.infoProductName}>{props.product.name}</Text>
-                <Text style={styles.infoProductPrice}>{props.product.price}</Text>
+                <Text style={styles.infoProductPrice}>{props.product.price.toFixed(2)}</Text>
             </View>
-            <Button title="Comprar" onPress={link} />
+            <Button title="Comprar" color={'#000'} onPress={link} />
         </View>
     );
 }
@@ -39,12 +39,13 @@ const styles = StyleSheet.create({
         elevation: 5,
         padding: 15,
         marginVertical: 10, // Gap vertical entre os itens
-        width: 320, // Largura do item (ajuste conforme necessário)
+        width: '90%', // Largura do item (ajuste conforme necessário)
+        
     },
 
     image: {     
         width: '100%',
-        height: 300,
+        height: 200,
         borderRadius: 10,
         marginBottom: 10,
     },

@@ -1,24 +1,51 @@
-import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions } from 'react-native';
-import { list } from './data';
+import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
+import { list } from './data/data';
 import { Product } from './types/product';
 import { ProductItem } from './components/product-item';
+import { smartwatch } from './data/data2';
+import { acessorios } from './data/dataAcessorios';
+import { notebooks } from './data/dataNotebooks';
 
 // Obtém a largura da tela para centralizar os itens
 const screenWidth = Dimensions.get('window').width;
 
 export default function App() {
+  
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView
+        
+      >
+        
       <StatusBar />
-      <Image 
-        source={require('./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg')} 
-        resizeMode='cover' 
+      <Image
+        source={require('./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg')}
+        resizeMode='cover'
         style={styles.phoenix}
       />
       <View style={styles.area}>
         <Text style={styles.h1}>Smartphones</Text>
-        <FlatList 
+        <FlatList
           data={list} // Array de dados que será renderizado na lista
+          renderItem={({ item }: { item: Product }) => (
+            <View style={styles.itemWrapper}>
+              <ProductItem product={item} />
+            </View>
+            
+          )}
+          keyExtractor={(item) => item.id.toString()} // Gera uma chave única para cada item
+          horizontal={true} // Define que a lista será exibida horizontalmente
+          showsHorizontalScrollIndicator={false} // Oculta o indicador de rolagem horizontal
+          pagingEnabled={true} // Habilita o comportamento de "paging" para centralizar cada item
+          snapToAlignment="center" // Alinha o item centralizado após a rolagem
+          decelerationRate="fast" // Faz a rolagem parar rapidamente para uma experiência mais fluida
+          
+        />
+        </View>
+        <View >
+        <Text style={styles.h1}>Notebooks</Text>
+        <FlatList
+          data={notebooks} // Array de dados que será renderizado na lista
           renderItem={({ item }: { item: Product }) => (
             <View style={styles.itemWrapper}>
               <ProductItem product={item} />
@@ -31,7 +58,42 @@ export default function App() {
           snapToAlignment="center" // Alinha o item centralizado após a rolagem
           decelerationRate="fast" // Faz a rolagem parar rapidamente para uma experiência mais fluida
         />
-      </View>
+        </View>
+        <View >
+        <Text style={styles.h1}>Smartwatches</Text>
+        <FlatList
+          data={smartwatch} // Array de dados que será renderizado na lista
+          renderItem={({ item }: { item: Product }) => (
+            <View style={styles.itemWrapper}>
+              <ProductItem product={item} />
+            </View>
+          )}
+          keyExtractor={(item) => item.id.toString()} // Gera uma chave única para cada item
+          horizontal={true} // Define que a lista será exibida horizontalmente
+          showsHorizontalScrollIndicator={false} // Oculta o indicador de rolagem horizontal
+          pagingEnabled={true} // Habilita o comportamento de "paging" para centralizar cada item
+          snapToAlignment="center" // Alinha o item centralizado após a rolagem
+          decelerationRate="fast" // Faz a rolagem parar rapidamente para uma experiência mais fluida
+        />
+        </View>
+        <View >
+        <Text style={styles.h1}>Acessórios</Text>
+        <FlatList
+          data={acessorios} // Array de dados que será renderizado na lista
+          renderItem={({ item }: { item: Product }) => (
+            <View style={styles.itemWrapper}>
+              <ProductItem product={item} />
+            </View>
+          )}
+          keyExtractor={(item) => item.id.toString()} // Gera uma chave única para cada item
+          horizontal={true} // Define que a lista será exibida horizontalmente
+          showsHorizontalScrollIndicator={false} // Oculta o indicador de rolagem horizontal
+          pagingEnabled={true} // Habilita o comportamento de "paging" para centralizar cada item
+          snapToAlignment="center" // Alinha o item centralizado após a rolagem
+          decelerationRate="fast" // Faz a rolagem parar rapidamente para uma experiência mais fluida
+        />
+        </View>
+        </ScrollView>
     </SafeAreaView>
   );
 }
@@ -47,7 +109,7 @@ const styles = StyleSheet.create({
   },
 
   area: {
-    flex: 1,
+    
     padding: 10,
     justifyContent: 'center',
   },
@@ -64,4 +126,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
 });
