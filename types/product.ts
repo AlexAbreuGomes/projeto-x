@@ -5,3 +5,9 @@ export type Product = {
     price: number;
     url: string;
 }
+
+export type Search = {
+    placeholder: string;
+    onChangeText: (text: string) => void;
+    onPress: () => void;
+}

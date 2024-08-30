@@ -4,10 +4,10 @@
     "slug": "AlexImports",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,12 +16,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.alexdevmobile007.AlexImports"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a0d47c9b-567b-401a-b5bf-7176c44a7857"
+      }
     }
   }
 }

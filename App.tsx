@@ -1,10 +1,12 @@
-import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
+import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView, TextInput } from 'react-native';
 import { list } from './data/data';
 import { Product } from './types/product';
+import { SearchDevice} from './components/search';
 import { ProductItem } from './components/product-item';
 import { smartwatch } from './data/data2';
 import { acessorios } from './data/dataAcessorios';
 import { notebooks } from './data/dataNotebooks';
+
 
 // Obtém a largura da tela para centralizar os itens
 const screenWidth = Dimensions.get('window').width;
@@ -13,16 +15,23 @@ export default function App() {
   
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        
-      >
-        
-      <StatusBar />
+      <ScrollView>
+      <StatusBar/>
+      
       <Image
         source={require('./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg')}
         resizeMode='cover'
         style={styles.phoenix}
       />
+
+      <SearchDevice 
+        search={{
+          placeholder: 'Pesquisar...',
+          onChangeText: () => {},
+          onPress: () => {},
+        }}
+      />
+     
       <View style={styles.area}>
         <Text style={styles.h1}>Smartphones</Text>
         <FlatList
@@ -103,6 +112,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  imput: {
+    width: '96%',
+    height: 40,
+    alignContent: 'center',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    padding: 10,
+    margin: 10,
+    borderWidth: 1,
+    borderColor: '#ddd',
+  },
+
   phoenix: {
     width: '100%',
     height: 220,
@@ -126,5 +147,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+
 
 });
