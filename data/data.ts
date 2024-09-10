@@ -35,6 +35,7 @@ export const list: Product[] = [
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-s711blgjzto/gallery/br-galaxy-s23-fe-s711-sm-s711blgjzto-538427989?$650_519_PNG$",
         price: 4999.99,
         url: "https://www.samsung.com/br/smartphones/galaxy-s23/",
+        
     },
     {
         id: 6,

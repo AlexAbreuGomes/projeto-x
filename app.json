@@ -2,32 +2,37 @@
   "expo": {
     "name": "AlexImports",
     "slug": "AlexImports",
-    "version": "1.0.0",
+    "scheme": "your-app-scheme",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg",
+    "icon": "./assets/Default_Create_an_icon_for_the_store_Alex_Imports_a_modern_and_2_b463ffba-62e1-4095-a198-a15f00ffd0e6_0.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg",
-      "resizeMode": "contain",
+      "image": "./assets/Leonardo_Phoenix_Create_an_icon_for_the_store_Alex_Imports_a_m_0.jpg",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 2,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg",
+        "foregroundImage": "./assets/Leonardo_Phoenix_Create_an_icon_for_the_store_Alex_Imports_a_m_0.jpg",
         "backgroundColor": "#ffffff"
       },
       "package": "com.alexdevmobile007.AlexImports"
     },
     "web": {
-      "favicon": "./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg"
+      "favicon": "./assets/Default_Create_an_icon_for_the_store_Alex_Imports_a_modern_and_02.jpg"
     },
     "extra": {
       "eas": {
         "projectId": "a0d47c9b-567b-401a-b5bf-7176c44a7857"
       }
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

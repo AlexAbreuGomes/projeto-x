@@ -1,28 +1,33 @@
-import { Image, StyleSheet, View, Text, Linking, Button } from "react-native";
+import { Image, StyleSheet, View, Text, Linking, Button, Pressable, TouchableOpacity } from "react-native";
 import { Product } from "../types/product";
+import { ButtonShop } from "./button-general";
+import { router } from 'expo-router';
 
 type Props = {
     product: Product
 }
 
-export const ProductItem = (props: Props) => {
-    const link = () => {
-        const url = props.product.url; 
-        Linking.openURL(url);
-    }
+        export const ProductItem = ({ product }: Props) => {
+            // Função para navegar para a página de detalhes do produto
+            const handlePress = () => {
+                router.push(`/product/${product.id}`);
+            }
         
-    return (
-        <View style={styles.container}>
-            <Image 
-                source={{uri: props.product.image}} 
-                style={styles.image} 
-                resizeMode="cover" 
-            />
+            return (
+                <View style={styles.container}>
+                    <TouchableOpacity onPress={handlePress} style={styles.touchable}>
+                        <Image
+                            source={{ uri: product.image }}
+                            style={styles.image}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                    <ButtonShop product={product} />
+
             <View style={styles.infoProduct}>
-                <Text style={styles.infoProductName}>{props.product.name}</Text>
-                <Text style={styles.infoProductPrice}>{props.product.price.toFixed(2)}</Text>
+                <Text style={styles.infoProductName}>{product.name}</Text>
+                <Text style={styles.infoProductPrice}>{product.price.toFixed(2)}</Text>
             </View>
-            <Button title="Comprar" color={'#000'} onPress={link} />
         </View>
     );
 }
@@ -40,14 +45,17 @@ const styles = StyleSheet.create({
         padding: 15,
         marginVertical: 10, // Gap vertical entre os itens
         width: '90%', // Largura do item (ajuste conforme necessário)
-        
+
     },
 
-    image: {     
+    touchable: {
         width: '100%',
         height: 200,
+    },
+    image: {
+        width: '100%',
+        height: '100%',
         borderRadius: 10,
-        marginBottom: 10,
     },
 
     infoProduct: {

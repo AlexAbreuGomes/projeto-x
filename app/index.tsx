@@ -1,11 +1,13 @@
-import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView, TextInput } from 'react-native';
-import { list } from './data/data';
-import { Product } from './types/product';
-import { SearchDevice} from './components/search';
-import { ProductItem } from './components/product-item';
-import { smartwatch } from './data/data2';
-import { acessorios } from './data/dataAcessorios';
-import { notebooks } from './data/dataNotebooks';
+import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
+import { list } from '../data/data';
+import { Product } from '../types/product';
+import { SearchDevice} from '../components/search';
+import { ProductItem } from '../components/product-item';
+import { smartwatch } from '../data/data2';
+import { acessorios } from '../data/dataAcessorios';
+import { notebooks } from '../data/dataNotebooks';
+import { router } from 'expo-router';
+
 
 
 // Obtém a largura da tela para centralizar os itens
@@ -19,7 +21,7 @@ export default function App() {
       <StatusBar/>
       
       <Image
-        source={require('./assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg')}
+        source={require('../assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg')}
         resizeMode='cover'
         style={styles.phoenix}
       />
@@ -39,6 +41,7 @@ export default function App() {
           renderItem={({ item }: { item: Product }) => (
             <View style={styles.itemWrapper}>
               <ProductItem product={item} />
+              
             </View>
             
           )}
@@ -130,7 +133,6 @@ const styles = StyleSheet.create({
   },
 
   area: {
-    
     padding: 10,
     justifyContent: 'center',
   },
