@@ -1,10 +1,17 @@
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { list } from '../../data/data'; // Importe sua lista de produtos
+import { smartwatch } from '../../data/data2'; 
+import { acessorios } from '../../data/dataAcessorios';
+import { notebooks } from '../../data/dataNotebooks';
 
 export default function ProductDetails() {
     const { id } = useLocalSearchParams();  // Pega o ID da URL
-    const product = list.find((item) => item.id === Number(id)); // Encontra o produto pelo ID
+    const allProducts = [...list, ...smartwatch, ...acessorios, ...notebooks];
+
+    // Procurando o produto nas listas combinadas
+    const product = allProducts.find((item) => item.id === Number(id));
+    
 
     if (!product) {
         return (
@@ -16,8 +23,11 @@ export default function ProductDetails() {
 
     return (
         <View style={styles.container}>
-            <Image source={{ uri: product.image }} style={styles.image} />
             <Text style={styles.name}>{product.name}</Text>
+            <Image source={{ uri: product.image }} style={styles.image} />
+            <Text> parabens Alex vc é fodah</Text>
+            
+            
             
         </View>
     );
