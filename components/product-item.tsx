@@ -1,7 +1,8 @@
 import { Image, StyleSheet, View, Text, Linking, Button, Pressable, TouchableOpacity } from "react-native";
 import { Product } from "../types/product";
 import { ButtonShop } from "./button-general";
-import { router } from 'expo-router';
+import { router } from "expo-router";
+
 
 type Props = {
     product: Product
@@ -10,7 +11,7 @@ type Props = {
         export const ProductItem = ({ product }: Props) => {
             // Função para navegar para a página de detalhes do produto
             const handlePress = () => {
-                router.push(`/product/${product.id}`);
+                router.push(`/description/${product.id}`);
             }
         
             return (
@@ -26,7 +27,7 @@ type Props = {
 
             <View style={styles.infoProduct}>
                 <Text style={styles.infoProductName}>{product.name}</Text>
-                <Text style={styles.infoProductPrice}>{product.price.toFixed(2)}</Text>
+                
             </View>
         </View>
     );
