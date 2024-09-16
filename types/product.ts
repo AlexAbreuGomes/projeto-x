@@ -4,6 +4,7 @@ export type Product = {
     image: string;
     price: number;
     url: string;
+    category: string;
 }
 
 export type Search = {

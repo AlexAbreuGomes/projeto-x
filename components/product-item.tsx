@@ -1,33 +1,32 @@
-import { Image, StyleSheet, View, Text, Linking, Button, Pressable, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Product } from "../types/product";
 import { ButtonShop } from "./button-general";
 import { router } from "expo-router";
-
 
 type Props = {
     product: Product
 }
 
-        export const ProductItem = ({ product }: Props) => {
-            // Função para navegar para a página de detalhes do produto
-            const handlePress = () => {
-                router.push(`/description/${product.id}`);
-            }
-        
-            return (
-                <View style={styles.container}>
-                    <TouchableOpacity onPress={handlePress} style={styles.touchable}>
-                        <Image
-                            source={{ uri: product.image }}
-                            style={styles.image}
-                            resizeMode="contain"
-                        />
-                    </TouchableOpacity>
-                    <ButtonShop product={product} />
+export const ProductItem = ({ product }: Props) => {
+    // Função para navegar para a página de detalhes do produto
+    const handlePress = () => {
+        // Inclui a categoria e o id na navegação
+        router.push(`/description/${product.category}/${product.id}`);
+    }
+
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity onPress={handlePress} style={styles.touchable}>
+                <Image
+                    source={{ uri: product.image }}
+                    style={styles.image}
+                    resizeMode="contain"
+                />
+            </TouchableOpacity>
+            <ButtonShop product={product} />
 
             <View style={styles.infoProduct}>
                 <Text style={styles.infoProductName}>{product.name}</Text>
-                
             </View>
         </View>
     );
@@ -44,9 +43,8 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
         padding: 15,
-        marginVertical: 10, // Gap vertical entre os itens
-        width: '90%', // Largura do item (ajuste conforme necessário)
-
+        marginVertical: 10,
+        width: '90%', // Ajuste a largura do item conforme necessário
     },
 
     touchable: {
@@ -77,4 +75,3 @@ const styles = StyleSheet.create({
         color: 'green',
     }
 });
-

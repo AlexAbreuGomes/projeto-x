@@ -25,6 +25,15 @@ export default function TabLayout() {
                 }}
             />
 
+            <Tabs.Screen
+
+                name="(favoritos)"
+                options={{
+                    title: 'Favoritos',
+                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="facebook" color={color} />,
+                }}
+            />
+
         </Tabs>
 
 
