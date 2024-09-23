@@ -7,7 +7,7 @@ export default function Layout() {
       screenOptions={{
               headerShown: false
       }}>
-      <Stack.Screen name="favoritos" />
+      <Stack.Screen name="sobre" />
       
   
     </Stack>

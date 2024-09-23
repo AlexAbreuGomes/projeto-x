@@ -1,7 +1,7 @@
 import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
 import { list } from '../../data/datasmartphone';
 import { Product } from '../../types/product';
-import { SearchDevice } from '../../components/search';
+
 import { ProductItem } from '../../components/product-item';
 import { smartwatch } from '../../data/datawatchs';
 import { acessorios } from '../../data/dataAcessorios';
@@ -26,13 +26,6 @@ export default function App() {
           style={styles.phoenix}
         />
 
-        <SearchDevice
-          search={{
-            placeholder: 'Pesquisar...',
-            onChangeText: () => { },
-            onPress: () => { },
-          }}
-        />
 
         <View style={styles.area}>
           <Text style={styles.h1}>Smartphones</Text>

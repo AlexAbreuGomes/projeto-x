@@ -7,7 +7,7 @@ export default function Layout() {
       screenOptions={{
               headerShown: false
       }}>
-      <Stack.Screen name="login" />
+      <Stack.Screen name="categorias" />
       
   
     </Stack>

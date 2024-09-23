@@ -1,7 +1,6 @@
 import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
 import { list } from '../../../data/datasmartphone';
 import { Product } from '../../../types/product';
-import { SearchDevice } from '../../../components/search';
 import { ProductItem } from '../../../components/product-item';
 import { smartwatch } from '../../../data/datawatchs';
 import { acessorios } from '../../../data/dataAcessorios';
@@ -16,7 +15,7 @@ export default function App() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
+           <ScrollView>
                 <StatusBar />
 
                 <Image
@@ -24,15 +23,6 @@ export default function App() {
                     resizeMode='cover'
                     style={styles.phoenix}
                 />
-
-                <SearchDevice
-                    search={{
-                        placeholder: 'Pesquisar...',
-                        onChangeText: () => { },
-                        onPress: () => { },
-                    }}
-                />
-
                 <View >
                     <Text style={styles.h1}>Smartwatches</Text>
                     <FlatList
@@ -43,7 +33,7 @@ export default function App() {
                             </View>
                         )}
                         keyExtractor={(item) => item.id.toString()} // Gera uma chave única para cada item
-                        horizontal={true} // Define que a lista será exibida horizontalmente
+                        horizontal={false} // Define que a lista será exibida horizontalmente
                         showsHorizontalScrollIndicator={false} // Oculta o indicador de rolagem horizontal
                         pagingEnabled={true} // Habilita o comportamento de "paging" para centralizar cada item
                         snapToAlignment="center" // Alinha o item centralizado após a rolagem
@@ -51,7 +41,7 @@ export default function App() {
                     />
                 </View>
 
-            </ScrollView>
+                </ScrollView>
         </SafeAreaView>
     );
 }

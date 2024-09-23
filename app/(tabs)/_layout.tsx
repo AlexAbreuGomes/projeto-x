@@ -8,31 +8,40 @@ export default function TabLayout() {
             tabBarActiveTintColor: 'black'
         }}>
             <Tabs.Screen
-
                 name="index"
                 options={{
-                    title: 'Home',
+                    title: 'INICIO',
                     tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
                 }}
             />
 
             <Tabs.Screen
-
-                name="(login)"
+                name="(categorias)"
                 options={{
-                    title: 'Login',
+                    title: 'CATEGORIAS',
                     tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
                 }}
             />
 
             <Tabs.Screen
 
-                name="(favoritos)"
+                name="(menu)"
                 options={{
-                    title: 'Favoritos',
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="facebook" color={color} />,
+                    title: 'MENU',
+                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="bars" color={color} />,
                 }}
             />
+
+<Tabs.Screen
+
+name="(sobre)"
+options={{
+    title: 'SOBRE',
+    tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
+}}
+/>
+
+            
 
         </Tabs>
 

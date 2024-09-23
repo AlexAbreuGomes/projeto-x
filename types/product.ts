@@ -7,8 +7,3 @@ export type Product = {
     category: string;
 }
 
-export type Search = {
-    placeholder: string;
-    onChangeText: (text: string) => void;
-    onPress: () => void;
-}
