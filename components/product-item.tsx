@@ -27,6 +27,8 @@ export const ProductItem = ({ product }: Props) => {
 
             <View style={styles.infoProduct}>
                 <Text style={styles.infoProductName}>{product.name}</Text>
+                <Text style={styles.infoProductName}>{product.price}</Text>
+
             </View>
         </View>
     );
@@ -35,7 +37,7 @@ export const ProductItem = ({ product }: Props) => {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#fffdfd',
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
