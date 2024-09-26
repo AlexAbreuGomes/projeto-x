@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
+import { Image,  StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
 import { list } from '../../data/datasmartphone';
 import { Banners, Product } from '../../types/product';
 import { useFonts, Orbitron_700Bold } from '@expo-google-fonts/orbitron';
@@ -10,6 +10,7 @@ import { notebooks } from '../../data/dataNotebooks';
 import * as SplashScreen from 'expo-splash-screen'; // Importa o SplashScreen
 import { videoBanners } from '../../data/videoBanners';
 import { BannerItem } from '../../components/VideoBanner';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -33,13 +34,12 @@ export default function App() {
   }
 
   return (
-  
-      <SafeAreaView onLayout={onLayoutRootView}>
+  <SafeAreaView onLayout={onLayoutRootView} style={styles.container}>
         
         <ScrollView>
           <StatusBar />
 
-          <View style={styles.area1}>
+          <View>
 
             <FlatList
               data={videoBanners}
@@ -61,7 +61,7 @@ export default function App() {
 
           </View>
 
-          <View style={styles.area}>
+          <View >
             <Text style={styles.h1}>Carregadores</Text>
             <FlatList
               data={list}
@@ -72,14 +72,14 @@ export default function App() {
               )}
               keyExtractor={(item) => item.id.toString()}
               horizontal={true}
-             
+              showsHorizontalScrollIndicator={false}
               pagingEnabled={true}
               snapToAlignment="center"
               decelerationRate="fast"
             />
           </View>
 
-          <View style={styles.area}>
+          <View >
             <Text style={styles.h1}>Cabos</Text>
             <FlatList
               data={notebooks}
@@ -97,7 +97,7 @@ export default function App() {
             />
           </View>
 
-          <View style={styles.area}>
+          <View>
             <Text style={styles.h1}>power banks</Text>
             <FlatList
               data={smartwatch}
@@ -115,7 +115,7 @@ export default function App() {
             />
           </View>
 
-          <View style={styles.area}>
+          <View >
             <Text style={styles.h1}>Acessórios</Text>
             <FlatList
               data={acessorios}
@@ -142,18 +142,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   
-  area: {
-    padding: 10,
-    justifyContent: 'center',
-  },
-
-  area1: {
-    padding: 10,
-    borderWidth:1,
-    borderColor:'black',
-    justifyContent: 'center',
-  },
-
   h1: {
     fontSize: 35,
     textAlign: 'center',
@@ -164,5 +152,6 @@ const styles = StyleSheet.create({
     width: screenWidth,
     justifyContent: 'center',
     alignItems: 'center',
+    fontFamily: 'Orbitron_700Bold',
   },
 });

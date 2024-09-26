@@ -16,7 +16,7 @@ export const BannerItem = ({ product }: Props) => {
         <View style={styles.container}>
             <TouchableOpacity onPress={handlePress} style={styles.touchable}>
                 <Image
-                    source={product.imageUri}
+                   source={ product.imageUri }
                     style={styles.image}
                     resizeMode="cover"
                 />
@@ -28,23 +28,18 @@ export const BannerItem = ({ product }: Props) => {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        borderRadius: 10,
-        marginVertical: 10,
-        marginHorizontal: 5,
-        overflow: 'hidden',
-        borderWidth: 2,
-        borderColor: 'red'
+        width: '100%', // Ajuste a largura do item conforme necessário
     },
+
     touchable: {
-        width: 300,  // Largura do banner, ajuste conforme necessário
-        height: 300, // Altura do banner
-         borderWidth: 2,
-        borderColor: 'blue'
+        width: '100%',  // Largura do banner, ajuste conforme necessário
+        height: 200, // Altura do banner
+       
     },
     image: {
         width: '100%',
-        height: 300,
-         borderWidth: 2,
-        borderColor: 'green'
+        height: 200,
+       
+        
     }
 });

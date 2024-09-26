@@ -20,16 +20,21 @@ export const ProductItem = ({ product }: Props) => {
                 <Image
                     source={{ uri: product.image }}
                     style={styles.image}
-                    resizeMode="contain"
+                    resizeMode="contain" 
                 />
             </TouchableOpacity>
-            <ButtonShop product={product} />
+           
 
             <View style={styles.infoProduct}>
                 <Text style={styles.infoProductName}>{product.name}</Text>
-                <Text style={styles.infoProductName}>{product.price}</Text>
+                <Text style={styles.infoProductName}>
+                
+                    {` ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}`} {/* //serve para fromatar o numero padrao pt.br */}
+                </Text>
+
 
             </View>
+            
         </View>
     );
 }
@@ -44,10 +49,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 5,
-        padding: 15,
-        marginVertical: 10,
-        width: '90%', // Ajuste a largura do item conforme necessário
+        margin: 5, // Ajuste de margem
+        width: '48%', // Ajuste a largura do item conforme necessário
+        height:310
     },
+
 
     touchable: {
         width: '100%',
@@ -55,20 +61,22 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: '100%',
+        height: 200,
         borderRadius: 10,
     },
 
     infoProduct: {
         alignItems: 'center',
-        marginBottom: 10,
+        
+        fontFamily: 'Orbitron_700Bold',
     },
 
     infoProductName: {
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 18,
+        fontFamily: 'Orbitron_700Bold',
         textAlign: 'center',
-        marginBottom: 5,
+        marginBottom: 10
+        
     },
 
     infoProductPrice: {
