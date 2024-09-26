@@ -1,14 +1,17 @@
 import React, { useEffect, useCallback } from 'react';
 import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient'; // Importa o LinearGradient
 import { list } from '../../data/datasmartphone';
-import { Product } from '../../types/product';
+import { Banners, Product } from '../../types/product';
 import { useFonts, Orbitron_700Bold } from '@expo-google-fonts/orbitron';
-import * as SplashScreen from 'expo-splash-screen'; // Importa o SplashScreen
 import { ProductItem } from '../../components/product-item';
 import { smartwatch } from '../../data/datawatchs';
 import { acessorios } from '../../data/dataAcessorios';
 import { notebooks } from '../../data/dataNotebooks';
+import * as SplashScreen from 'expo-splash-screen'; // Importa o SplashScreen
+import { videoBanners } from '../../data/videoBanners';
+import { BannerItem } from '../../components/VideoBanner';
+
+
 
 SplashScreen.preventAutoHideAsync(); // Evita que o SplashScreen feche automaticamente
 
@@ -30,24 +33,36 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      colors={['#bebebe',  '#30dfd3e6']} // Gradiente de cinza para o verde
-      style={styles.container}
-      start={{ x: 0, y: 0 }} // Início do gradiente
-      end={{ x: 1, y: 1 }}   // Fim do gradiente
-    >
+  
       <SafeAreaView onLayout={onLayoutRootView}>
+        
         <ScrollView>
           <StatusBar />
 
-          <Image
-            source={require('../../assets/Leonardo_Phoenix_Design_an_image_for_Alex_Imports_a_sleek_and_3.jpg')}
-            resizeMode='cover'
-            style={styles.phoenix}
-          />
+          <View style={styles.area1}>
+
+            <FlatList
+              data={videoBanners}
+              renderItem={({item}:{item: Banners})=>(
+                <View style={styles.itemWrapper}>
+                <BannerItem product={item}/>
+                </View>
+              )}
+
+              keyExtractor={(item) => item.id.toString()}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              pagingEnabled={true}
+              snapToAlignment="center"
+              decelerationRate="fast"
+            
+            />
+
+
+          </View>
 
           <View style={styles.area}>
-            <Text style={styles.h1}>SMARTPHONES</Text>
+            <Text style={styles.h1}>Carregadores</Text>
             <FlatList
               data={list}
               renderItem={({ item }: { item: Product }) => (
@@ -57,15 +72,15 @@ export default function App() {
               )}
               keyExtractor={(item) => item.id.toString()}
               horizontal={true}
-              showsHorizontalScrollIndicator={false}
+             
               pagingEnabled={true}
               snapToAlignment="center"
               decelerationRate="fast"
             />
           </View>
 
-          <View>
-            <Text style={styles.h1}>Notebooks</Text>
+          <View style={styles.area}>
+            <Text style={styles.h1}>Cabos</Text>
             <FlatList
               data={notebooks}
               renderItem={({ item }: { item: Product }) => (
@@ -82,8 +97,8 @@ export default function App() {
             />
           </View>
 
-          <View>
-            <Text style={styles.h1}>Smartwatches</Text>
+          <View style={styles.area}>
+            <Text style={styles.h1}>power banks</Text>
             <FlatList
               data={smartwatch}
               renderItem={({ item }: { item: Product }) => (
@@ -100,7 +115,7 @@ export default function App() {
             />
           </View>
 
-          <View>
+          <View style={styles.area}>
             <Text style={styles.h1}>Acessórios</Text>
             <FlatList
               data={acessorios}
@@ -119,7 +134,6 @@ export default function App() {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </LinearGradient>
   );
 }
 
@@ -127,18 +141,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  phoenix: {
-    width: '100%',
-    height: 220,
-  },
+  
   area: {
     padding: 10,
     justifyContent: 'center',
   },
+
+  area1: {
+    padding: 10,
+    borderWidth:1,
+    borderColor:'black',
+    justifyContent: 'center',
+  },
+
   h1: {
-    fontSize: 24,
+    fontSize: 35,
     textAlign: 'center',
-    marginBottom: 10,
+    
     fontFamily: 'Orbitron_700Bold',
   },
   itemWrapper: {

@@ -7,3 +7,8 @@ export type Product = {
     category: string;
 }
 
+export type Banners = {
+    id: number;
+    imageUri: any;
+}
+
