@@ -5,6 +5,7 @@ import { smartwatch } from '../../../data/datawatchs'; // Lista de smartwatches
 import { acessorios } from '../../../data/dataAcessorios'; // Lista de acessórios
 import { notebooks } from '../../../data/dataNotebooks'; // Lista de notebooks
 import { Product } from '../../../types/product'; // Importa o tipo Product
+import { ButtonShop } from '../../../components/button-general';
 
 export default function ProductDetails() {
     const { id, category }: { id: string; category: string } = useLocalSearchParams();  // Pega o ID e a categoria da URL
@@ -12,13 +13,13 @@ export default function ProductDetails() {
     // Função para selecionar a lista com base na categoria
     const getProductList = (category: string): Product[] => {
         switch (category) {
-            case 'smartphones':
+            case 'carregadores':
                 return list;
-            case 'watchs':
+            case 'cabos':
                 return smartwatch;
-            case 'acessorios':
+            case 'powerBanks':
                 return acessorios;
-            case 'notebooks':
+            case 'acessorios':
                 return notebooks;
             default:
                 return [];
@@ -43,10 +44,8 @@ export default function ProductDetails() {
         <View style={styles.container}>
             <Text style={styles.name}>{product.name}</Text>
             <Image source={{ uri: product.image }} style={styles.image} />
-            <Text style={styles.textStyle}> ohhhhh minino lindo </Text>
-
-
-
+            <Text style={styles.textStyle}> {product.description} </Text>
+            
         </View>
     );
 }

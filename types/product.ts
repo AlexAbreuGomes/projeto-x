@@ -5,6 +5,7 @@ export type Product = {
     price: number;
     url: string;
     category: string;
+    description: string;
 }
 
 export type Banners = {

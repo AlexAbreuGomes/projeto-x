@@ -20,21 +20,16 @@ export const ProductItem = ({ product }: Props) => {
                 <Image
                     source={{ uri: product.image }}
                     style={styles.image}
-                    resizeMode="contain" 
+                    resizeMode="contain"
                 />
             </TouchableOpacity>
-           
 
             <View style={styles.infoProduct}>
                 <Text style={styles.infoProductName}>{product.name}</Text>
-                <Text style={styles.infoProductName}>
-                
-                    {` ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}`} {/* //serve para fromatar o numero padrao pt.br */}
+                <Text style={styles.infoProductPrice}>
+                    {`$ ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price).replace('$', '')}`}
                 </Text>
-
-
             </View>
-            
         </View>
     );
 }
@@ -50,8 +45,8 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
         margin: 5, // Ajuste de margem
-        width: '48%', // Ajuste a largura do item conforme necessário
-        height:310
+        width: '90%', // Ajuste a largura do item conforme necessário
+        height: 310
     },
 
 
@@ -67,21 +62,23 @@ const styles = StyleSheet.create({
 
     infoProduct: {
         alignItems: 'center',
-        
-        fontFamily: 'Orbitron_700Bold',
+
+        fontFamily: 'Orbitron_600SemiBold',
     },
 
     infoProductName: {
         fontSize: 18,
-        fontFamily: 'Orbitron_700Bold',
-        textAlign: 'center',
-        marginBottom: 10
+        fontFamily: 'Orbitron_600SemiBold',
         
+        textAlign: 'center',
+        marginBottom: 10,
+        color: '#0361dd',
+
     },
 
     infoProductPrice: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: 'green',
+        fontSize: 22,
+        fontFamily: 'Orbitron_800ExtraBold',
+        color: '#24cc02',
     }
 });

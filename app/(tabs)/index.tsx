@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { Image,  StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
 import { list } from '../../data/datasmartphone';
 import { Banners, Product } from '../../types/product';
-import { useFonts, Orbitron_700Bold } from '@expo-google-fonts/orbitron';
+import { useFonts, Orbitron_700Bold, Orbitron_800ExtraBold, Orbitron_900Black, Orbitron_500Medium, Orbitron_400Regular, Orbitron_600SemiBold } from '@expo-google-fonts/orbitron';
 import { ProductItem } from '../../components/product-item';
 import { smartwatch } from '../../data/datawatchs';
 import { acessorios } from '../../data/dataAcessorios';
@@ -20,7 +20,10 @@ const screenWidth = Dimensions.get('window').width;
 
 export default function App() {
   let [fontsLoaded] = useFonts({
+    Orbitron_600SemiBold,
     Orbitron_700Bold,
+    Orbitron_800ExtraBold,
+    Orbitron_900Black,
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -38,15 +41,14 @@ export default function App() {
         
         <ScrollView>
           <StatusBar />
-
           <View>
 
             <FlatList
               data={videoBanners}
               renderItem={({item}:{item: Banners})=>(
-                <View style={styles.itemWrapper}>
+                <View style={styles.itemWrapper2}>
                 <BannerItem product={item}/>
-                </View>
+                </View >
               )}
 
               keyExtractor={(item) => item.id.toString()}
@@ -98,7 +100,7 @@ export default function App() {
           </View>
 
           <View>
-            <Text style={styles.h1}>power banks</Text>
+            <Text style={styles.h1}>Power Banks</Text>
             <FlatList
               data={smartwatch}
               renderItem={({ item }: { item: Product }) => (
@@ -143,15 +145,23 @@ const styles = StyleSheet.create({
   },
   
   h1: {
-    fontSize: 35,
-    textAlign: 'center',
-    
-    fontFamily: 'Orbitron_700Bold',
+    fontSize: 25,
+    textAlign: 'justify',
+    fontFamily: 'Orbitron_600SemiBold',
+    color: '#0361dd',
+    padding:10
   },
   itemWrapper: {
-    width: screenWidth,
+    width: screenWidth/2,
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'Orbitron_700Bold',
+  },
+
+  itemWrapper2: {
+    width: screenWidth,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'Orbitron_900Black',
   },
 });
