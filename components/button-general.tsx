@@ -1,9 +1,11 @@
-import { Image, StyleSheet, View, Text, Linking, Button, Pressable, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, View, Text, Linking, Button, Pressable, TouchableOpacity, Dimensions } from "react-native";
 import { Product } from "../types/product";
+
 
 type Props = {
     product: Product
 }
+const { width } = Dimensions.get('window');
 
 export const ButtonShop = (props: Props) => {
     const link = () => {
@@ -15,8 +17,8 @@ export const ButtonShop = (props: Props) => {
         style={({pressed}) =>[
             {
                 backgroundColor: pressed
-                ? 'rgb(210, 230, 255)'
-                : 'rgb(0, 0, 0)'
+                ? 'rgb(3, 97, 221)'
+                : 'rgb(36, 204, 2)'
             },
             styles.botao
         ]}>
@@ -34,12 +36,12 @@ const styles = StyleSheet.create({
     },
 
     botao:{ 
-        width: 100,
+        width: width - 10,
         height: 40,
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
-        margin: 10,
+       
     },
 
     TextoBotao:{

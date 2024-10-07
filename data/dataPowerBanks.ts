@@ -1,13 +1,13 @@
 import { Product } from '../types/product';
 
-export const smartwatch: Product[] = [
+export const powerBanks: Product[] = [
     {
         id: 1,
         name: 'Samsung Galaxy Watch6 Classic LTE',
         image: "https://samsungbrshop.vtexassets.com/arquivos/ids/221827-600-auto?v=638309881062600000&width=600&height=auto&aspect=true",
         price: 2499.99,
         url: "https://shop.samsung.com/br/galaxy-watch6-classic-lte-43mm/p?_gl=1*1dkulsj*_gcl_au*NTQyNzUzNTQuMTcyNDc2MTAyOQ..*FPAU*MTk1ODM1NDI2Ny4xNzI0NzYxMDMw",
-        category: 'watchs'
+        category: 'powerbanks'
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export const smartwatch: Product[] = [
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/2407/gallery/br-galaxy-watch-ultra-l705-sm-l705fztazto-542171226?$650_519_PNG$",
         price: 3499.99,
         url: "https://www.samsung.com/br/watches/galaxy-watch/galaxy-watch-ultra-titanium-gray-lte-sm-l705fdaazto/",
-        category: 'watchs'
+        category: 'powerbanks'
     },
     {
         id: 3,
@@ -23,7 +23,7 @@ export const smartwatch: Product[] = [
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/2407/gallery/br-galaxy-watch7-l310-sm-l310nzgazto-542363389?$365_292_PNG$",
         price: 2429.10,
         url:"https://www.samsung.com/br/watches/galaxy-watch/galaxy-watch7-44mm-green-bluetooth-sm-l310nzgazto/", 
-        category: 'watchs'
+        category: 'powerbanks'
     },
     {
         id: 4,
@@ -31,7 +31,7 @@ export const smartwatch: Product[] = [
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-r861nzkpzto/gallery/br-galaxy-watch-fe-r861-sm-r861nzkpzto-542520645?$365_292_PNG$",
         price: 1169.10,
         url:"https://www.samsung.com/br/watches/galaxy-watch/galaxy-watch7-44mm-green-bluetooth-sm-l310nzgazto/", 
-        category: 'watchs'
+        category: 'powerbanks'
     },
     {
         id: 5,
@@ -39,7 +39,7 @@ export const smartwatch: Product[] = [
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/2307/gallery/br-galaxy-watch6-r945-sm-r940nzkpzto-537403101?$365_292_PNG$",
         price: 1169.10,
         url:"https://www.samsung.com/br/watches/galaxy-watch/galaxy-watch6-44mm-graphite-bluetooth-sm-r940nzkpzto/", 
-        category: 'watchs'
+        category: 'powerbanks'
     },
     {
         id: 6,
@@ -47,7 +47,7 @@ export const smartwatch: Product[] = [
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/2208/gallery/br-galaxy-watch5-pro-sm-r920nzkpzto-533186020?$365_292_PNG$",
         price: 1799.10,
         url:"https://www.samsung.com/br/watches/galaxy-watch/galaxy-watch5-pro-black-titanium-bluetooth-sm-r920nzkpzto/", 
-        category: 'watchs'
+        category: 'powerbanks'
     },
     {
         id: 7,
@@ -55,7 +55,7 @@ export const smartwatch: Product[] = [
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-r890nzspzto/gallery/br-galaxy-watch4-classic-399632-399632-sm-r890nzspzto-507940861?$365_292_PNG$",
         price: 2471.10,
         url:"https://www.samsung.com/br/watches/galaxy-watch/galaxy-watch4-classic-silver-bluetooth-sm-r890nzspzto/", 
-        category: 'watchs'
+        category: 'powerbanks'
     },
     {
         id: 8,
@@ -63,7 +63,7 @@ export const smartwatch: Product[] = [
         image: "https://images.samsung.com/is/image/samsung/p6pim/br/sm-r390nzaazto/gallery/br-galaxy-fit3-r390-sm-r390nzaazto-539970886?$2052_1641_PNG$",
         price: 599.99,
         url: "https://www.samsung.com/br/watches/galaxy-fit/galaxy-fit3-gray-bluetooth-sm-r390nzaazto/",
-        category: 'watchs'
+        category: 'powerbanks'
     },
 
 

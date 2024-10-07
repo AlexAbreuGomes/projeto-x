@@ -1,47 +1,30 @@
-import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
-import { list } from '../../../data/datasmartphone';
-import { Product } from '../../../types/product';
-import { ProductItem } from '../../../components/product-item';
-import { smartwatch } from '../../../data/datawatchs';
-import { acessorios } from '../../../data/dataAcessorios';
-import { notebooks } from '../../../data/dataNotebooks';
-import { router } from 'expo-router';
+import React from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+const { width } = Dimensions.get('window');
 
-// Obtém a largura da tela para centralizar os itens
-const screenWidth = Dimensions.get('window').width;
-
-export default function App() {
-
+export default function AboutPage() {
     return (
         <SafeAreaView style={styles.container}>
-           <ScrollView>
-                <StatusBar />
-
-                <Image
-                    source={require('../../../assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg')}
-                    resizeMode='cover'
-                    style={styles.phoenix}
-                />
-                <View >
-                    <Text style={styles.h1}>Smartwatches</Text>
-                    <FlatList
-                        data={smartwatch} // Array de dados que será renderizado na lista
-                        renderItem={({ item }: { item: Product }) => (
-                            <View style={styles.itemWrapper}>
-                                <ProductItem product={item} />
-                            </View>
-                        )}
-                        keyExtractor={(item) => item.id.toString()} // Gera uma chave única para cada item
-                        horizontal={false} // Define que a lista será exibida horizontalmente
-                        showsHorizontalScrollIndicator={false} // Oculta o indicador de rolagem horizontal
-                        pagingEnabled={true} // Habilita o comportamento de "paging" para centralizar cada item
-                        snapToAlignment="center" // Alinha o item centralizado após a rolagem
-                        decelerationRate="fast" // Faz a rolagem parar rapidamente para uma experiência mais fluida
-                    />
-                </View>
-
-                </ScrollView>
+            <Text style={styles.title}>Sobre Nós</Text>
+            <View style={styles.content}>
+                <Text style={styles.description}>
+                    Bem-vindo à nossa loja de acessórios! Fundada em 2024, nós nos especializamos em 
+                    oferecer acessórios de alta performance que atendem às necessidades dos nossos 
+                    clientes. Nossa missão é proporcionar produtos que não apenas complementem seu estilo, 
+                    mas também ofereçam funcionalidade e durabilidade.
+                </Text>
+                <Text style={styles.description}>
+                    Cada um de nossos produtos é cuidadosamente selecionado para garantir a mais alta 
+                    qualidade, visando a satisfação e o conforto de nossos clientes. Estamos sempre em 
+                    busca das últimas tendências e inovações para trazer o que há de melhor no mercado.
+                </Text>
+                <Text style={styles.description}>
+                    Agradecemos por escolher nossa loja e esperamos que você encontre o acessório perfeito para 
+                    acompanhar seu estilo de vida ativo e dinâmico.
+                </Text>
+            </View>
         </SafeAreaView>
     );
 }
@@ -49,41 +32,26 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-
-    imput: {
-        width: '96%',
-        height: 40,
-        alignContent: 'center',
-        backgroundColor: '#f5f5f5',
-        borderRadius: 8,
-        padding: 10,
-        margin: 10,
-        borderWidth: 1,
-        borderColor: '#ddd',
-    },
-
-    phoenix: {
-        width: '100%',
-        height: 220,
-    },
-
-    area: {
-        padding: 10,
-        justifyContent: 'center',
-    },
-
-    h1: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom: 10,
-    },
-
-    itemWrapper: {
-        width: screenWidth, // Define a largura do item como a largura da tela para centralizar
-        justifyContent: 'center',
+        backgroundColor: '#fffdfd',
         alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
     },
-
+    title: {
+        fontSize: 32,
+        fontFamily: 'Orbitron_800ExtraBold',
+        color: '#24cc02',
+        marginBottom: 20,
+    },
+    content: {
+        width: width * 0.9, // O conteúdo ocupará 90% da largura da tela
+        padding: 10, // Adicionando padding para criar espaço
+    },
+    description: {
+        fontSize: 25,
+        fontFamily: 'Orbitron_400Regular',
+        color: '#0361dd',
+        marginBottom: 20, // Aumentando a margem inferior para mais espaço entre os textos
+       
+    },
 });
