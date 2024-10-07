@@ -1,7 +1,10 @@
-import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { Product } from "../types/product";
 import { ButtonShop } from "./button-general";
 import { router } from "expo-router";
+
+// Obtenha as dimensões da tela
+const { width } = Dimensions.get('window');
 
 type Props = {
     product: Product
@@ -20,7 +23,7 @@ export const ProductItem = ({ product }: Props) => {
                 <Image
                     source={{ uri: product.image }}
                     style={styles.image}
-                    resizeMode="contain"
+                    resizeMode="contain"  // Garante que a imagem seja redimensionada dentro da caixa sem estourar
                 />
             </TouchableOpacity>
 
@@ -44,40 +47,33 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 5,
-        margin: 5, // Ajuste de margem
-        width: '90%', // Ajuste a largura do item conforme necessário
-        height: 310
+        margin: 10,
+        width: width * 0.45,  // O item ocupará cerca de 45% da largura da tela
+        height: 285,  // Ajustado para acomodar bem os elementos
     },
-
-
     touchable: {
         width: '100%',
-        height: 200,
+        height: 180,  // Ajuste o tamanho da área de toque
     },
     image: {
         width: '100%',
-        height: 200,
+        height: '100%',  // A imagem vai se ajustar ao tamanho do Touchable
         borderRadius: 10,
     },
-
     infoProduct: {
+        padding: 10,  // Adiciona espaço entre a imagem e os detalhes do produto
         alignItems: 'center',
-
-        fontFamily: 'Orbitron_600SemiBold',
+        justifyContent: 'center',
     },
-
     infoProductName: {
-        fontSize: 18,
+        fontSize: 20,  // Ajuste o tamanho da fonte para ficar mais responsivo
         fontFamily: 'Orbitron_600SemiBold',
-        
         textAlign: 'center',
-        marginBottom: 10,
+        marginBottom: 5,
         color: '#0361dd',
-
     },
-
     infoProductPrice: {
-        fontSize: 22,
+        fontSize: 26,  // Ajuste o tamanho da fonte para o preço
         fontFamily: 'Orbitron_800ExtraBold',
         color: '#24cc02',
     }

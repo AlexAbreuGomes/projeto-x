@@ -1,0 +1,94 @@
+import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { Product } from '../types/product';  // Importa o tipo de produto
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ButtonShop } from './button-general';
+
+const { width } = Dimensions.get('window');
+// Defina as props que o componente vai receber
+type ProductDetailsProps = {
+    product: Product;
+};
+
+export const ProductDetails = ({ product }: ProductDetailsProps) => {
+    return (
+        <SafeAreaView style={styles.container}>
+            <Text style={styles.infoProductName}>{product.name}</Text>
+            <View style={styles.containerImage}>
+            
+                <Image
+                    source={{ uri: product.image }}
+                    style={styles.image}
+                    resizeMode="contain"  // Garante que a imagem seja redimensionada dentro da caixa sem estourar
+                />
+            </View>
+            <View style={styles.infoProduct}>
+                
+                <Text style={styles.infoProductDescripion}>{product.description}</Text>
+                <Text style={styles.infoProductPrice}>
+                    {`$ ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price).replace('$', '')}`}
+                </Text>
+            </View>
+            <ButtonShop product={product} />
+        </SafeAreaView>
+    );
+};
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+
+    containerImage: {
+        alignItems: 'center',
+        backgroundColor: '#ffffff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
+        margin: 10,
+        width: width - 30,  // O item ocupará cerca de 45% da largura da tela
+        height: 250,  // Ajustado para acomodar bem os elementos
+    },
+    touchable: {
+        width: '100%',
+        height: 180,  // Ajuste o tamanho da área de toque
+    },
+    image: {
+        width: '90%',
+        height: '100%',  // A imagem vai se ajustar ao tamanho do Touchable
+        borderRadius: 10,
+    },
+    infoProduct: {
+        
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: width - 30,  // O item ocupará cerca de 45% da largura da tela
+        height: 300,  // Ajustado para acomodar bem os elementos
+    },
+    infoProductName: {
+        fontSize: 25,  // Ajuste o tamanho da fonte para ficar mais responsivo
+        fontFamily: 'Orbitron_600SemiBold',
+        textAlign: 'center',
+        marginBottom: 15,
+        color: '#0361dd',
+    },
+
+    infoProductDescripion: {
+        fontSize: 25,  // Ajuste o tamanho da fonte para ficar mais responsivo
+        fontFamily: 'Orbitron_600SemiBold',
+        textAlign: 'center',
+        marginBottom: 15,
+        color: '#0361dd',
+    },
+
+    infoProductPrice: {
+        fontSize: 26,  // Ajuste o tamanho da fonte para o preço
+        fontFamily: 'Orbitron_800ExtraBold',
+        color: '#24cc02',
+    }
+
+});

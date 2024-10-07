@@ -1,26 +1,30 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
-import { list } from '../../../data/datasmartphone'; // Lista de smartphones
-import { smartwatch } from '../../../data/datawatchs'; // Lista de smartwatches
-import { acessorios } from '../../../data/dataAcessorios'; // Lista de acessórios
-import { notebooks } from '../../../data/dataNotebooks'; // Lista de notebooks
-import { Product } from '../../../types/product'; // Importa o tipo Product
-import { ButtonShop } from '../../../components/button-general';
+import { View, StyleSheet, Text } from 'react-native';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { carregadores } from '../../../data/dataCarregadores';
+import { powerBanks } from '../../../data/dataPowerBanks';
+import { acessorios } from '../../../data/dataAcessorios';
+import { cabos } from '../../../data/dataCabos';
+import { fones } from '../../../data/dataFones';
+import { Product } from '../../../types/product';
+import { ProductDetails } from '../../../components/product-details';  // Importa o novo componente
+import { BackButton } from '../../../components/backButton';
 
-export default function ProductDetails() {
-    const { id, category }: { id: string; category: string } = useLocalSearchParams();  // Pega o ID e a categoria da URL
+export default function ProductDetailsPage() {
+    const { id, category }: { id: string; category: string } = useLocalSearchParams();
 
     // Função para selecionar a lista com base na categoria
     const getProductList = (category: string): Product[] => {
         switch (category) {
             case 'carregadores':
-                return list;
+                return carregadores;
             case 'cabos':
-                return smartwatch;
+                return cabos;
             case 'powerBanks':
-                return acessorios;
+                return powerBanks;
             case 'acessorios':
-                return notebooks;
+                return acessorios;
+            case 'fones':
+                return fones;
             default:
                 return [];
         }
@@ -34,19 +38,50 @@ export default function ProductDetails() {
 
     if (!product) {
         return (
-            <View style={styles.container}>
-                <Text>Produto não encontrado.</Text>
-            </View>
+            <>
+            <Stack.Screen
+                options={{
+                    headerShown: true,
+                    title: category,
+                    headerTitleStyle: {
+                        fontSize: 30,
+                        fontFamily: 'Orbitron_700Bold',
+                        color: '#0361dd',
+                    },
+                    headerTitleAlign: 'center',
+                    headerLeft: () => (
+                        <BackButton onPress={() => router.back()} /> // Botão de voltar
+                    ),
+                }} />
+                
+                <View style={styles.container}>
+                    <Text>Produto não encontrado.</Text>
+                </View></>
         );
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.name}>{product.name}</Text>
-            <Image source={{ uri: product.image }} style={styles.image} />
-            <Text style={styles.textStyle}> {product.description} </Text>
+
+
+        <><Stack.Screen
+            options={{
+                headerShown: true,
+                title:'',
+                headerTitleStyle: {
+                    fontSize: 30,
+                    fontFamily: 'Orbitron_700Bold',
+                    color: '#0361dd',
+                },
+                headerTitleAlign: 'center',
+                headerLeft: () => (
+                    <BackButton onPress={() => router.back()} /> // Botão de voltar
+                ),
+            }} />
             
-        </View>
+            <View style={styles.container}>
+                {/* Renderize o produto usando o novo componente ProductDetails */}
+                <ProductDetails product={product} />
+            </View></>
     );
 }
 
@@ -56,31 +91,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-    },
-    textStyle:{
-        fontSize: 20,
-        color: 'black',
-        fontWeight: 'bold'
-
-    },
-
-    image: {
-        width: 200,
-        height: 200,
-        borderRadius: 10,
-        marginBottom: 20,
-    },
-
-    name: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 10,
-        textAlign: 'center',
-    },
-
-    description: {
-        fontSize: 16,
-        textAlign: 'center',
-        color: '#666',
+        backgroundColor: '#f5f5f5',
     },
 });

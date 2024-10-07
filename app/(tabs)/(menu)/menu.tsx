@@ -1,47 +1,47 @@
-import { Image, SafeAreaView, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
-import { list } from '../../../data/datasmartphone';
-import { Product } from '../../../types/product';
-import { ProductItem } from '../../../components/product-item';
-import { smartwatch } from '../../../data/datawatchs';
-import { acessorios } from '../../../data/dataAcessorios';
-import { notebooks } from '../../../data/dataNotebooks';
-import { router } from 'expo-router';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+const { width } = Dimensions.get('window');
 
-// Obtém a largura da tela para centralizar os itens
-const screenWidth = Dimensions.get('window').width;
+export default function MenuPage() {
+    const handleProducts = () => {
+        console.log('Navegando para Produtos');
+    };
 
-export default function App() {
+    const handleAbout = () => {
+        console.log('Navegando para Sobre Nós');
+    };
+
+    const handleCart = () => {
+        console.log('Navegando para Carrinho');
+    };
+
+    const handleContact = () => {
+        console.log('Navegando para Contato');
+    };
 
     return (
         <SafeAreaView style={styles.container}>
-           <ScrollView>
-                <StatusBar />
+            <Text style={styles.title}>Menu</Text>
+            
+            <View style={styles.menuContainer}>
+                <TouchableOpacity onPress={handleProducts} style={styles.menuButton}>
+                    <Text style={styles.menuButtonText}>Produtos</Text>
+                </TouchableOpacity>
 
-                <Image
-                    source={require('../../../assets/Leonardo_Phoenix_Create_an_image_for_Alex_Imports_a_modern_and_3.jpg')}
-                    resizeMode='cover'
-                    style={styles.phoenix}
-                />
-                <View >
-                    <Text style={styles.h1}>Smartwatches</Text>
-                    <FlatList
-                        data={smartwatch} // Array de dados que será renderizado na lista
-                        renderItem={({ item }: { item: Product }) => (
-                            <View style={styles.itemWrapper}>
-                                <ProductItem product={item} />
-                            </View>
-                        )}
-                        keyExtractor={(item) => item.id.toString()} // Gera uma chave única para cada item
-                        horizontal={false} // Define que a lista será exibida horizontalmente
-                        showsHorizontalScrollIndicator={false} // Oculta o indicador de rolagem horizontal
-                        pagingEnabled={true} // Habilita o comportamento de "paging" para centralizar cada item
-                        snapToAlignment="center" // Alinha o item centralizado após a rolagem
-                        decelerationRate="fast" // Faz a rolagem parar rapidamente para uma experiência mais fluida
-                    />
-                </View>
+                <TouchableOpacity onPress={handleAbout} style={styles.menuButton}>
+                    <Text style={styles.menuButtonText}>Sobre Nós</Text>
+                </TouchableOpacity>
 
-                </ScrollView>
+                <TouchableOpacity onPress={handleCart} style={styles.menuButton}>
+                    <Text style={styles.menuButtonText}>Carrinho</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={handleContact} style={styles.menuButton}>
+                    <Text style={styles.menuButtonText}>Contato</Text>
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 }
@@ -49,41 +49,36 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-
-    imput: {
-        width: '96%',
-        height: 40,
-        alignContent: 'center',
-        backgroundColor: '#f5f5f5',
-        borderRadius: 8,
-        padding: 10,
-        margin: 10,
-        borderWidth: 1,
-        borderColor: '#ddd',
-    },
-
-    phoenix: {
-        width: '100%',
-        height: 220,
-    },
-
-    area: {
-        padding: 10,
+        backgroundColor: '#fffdfd',
+        alignItems: 'center',
         justifyContent: 'center',
     },
-
-    h1: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom: 10,
+    title: {
+        fontSize: 32,
+        fontFamily: 'Orbitron_800ExtraBold',
+        color: 'rgb(3, 97, 221)',
+        marginBottom: 40,
     },
-
-    itemWrapper: {
-        width: screenWidth, // Define a largura do item como a largura da tela para centralizar
-        justifyContent: 'center',
+    menuContainer: {
+        width: width * 0.8,
         alignItems: 'center',
     },
-
+    menuButton: {
+        backgroundColor: 'rgb(3, 97, 221)',
+        width: '100%',
+        padding: 15,
+        borderRadius: 10,
+        marginBottom: 20,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    menuButtonText: {
+        color: '#ffffff',
+        fontSize: 20,
+        fontFamily: 'Orbitron_600SemiBold',
+    },
 });
