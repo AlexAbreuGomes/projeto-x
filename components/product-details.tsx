@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import { Product } from '../types/product';  // Importa o tipo de produto
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ButtonShop } from './button-general';
@@ -23,14 +23,17 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                     resizeMode="contain"  // Garante que a imagem seja redimensionada dentro da caixa sem estourar
                 />
             </View>
+            <ButtonShop product={product} />
+            <Text style={styles.infoProductPrice}>
+                    {`$ ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price).replace('$', '')}`}
+                </Text>
+                <ScrollView>
             <View style={styles.infoProduct}>
                 
                 <Text style={styles.infoProductDescripion}>{product.description}</Text>
-                <Text style={styles.infoProductPrice}>
-                    {`$ ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price).replace('$', '')}`}
-                </Text>
+               
             </View>
-            <ButtonShop product={product} />
+            </ScrollView>
         </SafeAreaView>
     );
 };
