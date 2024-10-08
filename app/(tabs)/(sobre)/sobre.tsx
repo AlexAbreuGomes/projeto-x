@@ -1,14 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, StatusBar, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default function AboutPage() {
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar />
             <Text style={styles.title}>Sobre Nós</Text>
-            <View style={styles.content}>
+            <ScrollView style={styles.content}>
                 <Text style={styles.description}>
                     Bem-vindo à nossa loja de acessórios! Fundada em 2024, nós nos especializamos em 
                     oferecer acessórios de alta performance que atendem às necessidades dos nossos 
@@ -24,7 +25,7 @@ export default function AboutPage() {
                     Agradecemos por escolher nossa loja e esperamos que você encontre o acessório perfeito para 
                     acompanhar seu estilo de vida ativo e dinâmico.
                 </Text>
-            </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
@@ -45,13 +46,14 @@ const styles = StyleSheet.create({
     },
     content: {
         width: width * 0.9, // O conteúdo ocupará 90% da largura da tela
+        height: height * 0.8, // Você pode remover isso se o ScrollView estiver apenas dentro do SafeAreaView
         padding: 10, // Adicionando padding para criar espaço
     },
     description: {
-        fontSize: 25,
-        fontFamily: 'Orbitron_400Regular',
+        fontSize: 20,
+        fontFamily: 'Orbitron_600SemiBold',
         color: '#0361dd',
         marginBottom: 20, // Aumentando a margem inferior para mais espaço entre os textos
-       
+        textAlign:'justify'
     },
 });

@@ -11,6 +11,7 @@ import * as SplashScreen from 'expo-splash-screen'; // Importa o SplashScreen
 import { videoBanners } from '../../data/videoBanners';
 import { BannerItem } from '../../components/VideoBanner';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { fones } from '../../data/dataFones';
 
 
 
@@ -85,6 +86,24 @@ export default function App() {
           <Text style={styles.h1}>Cabos</Text>
           <FlatList
             data={cabos}
+            renderItem={({ item }: { item: Product }) => (
+              <View style={styles.itemWrapper}>
+                <ProductItem product={item} />
+              </View>
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled={true}
+            snapToAlignment="center"
+            decelerationRate="fast"
+          />
+        </View>
+
+        <View >
+          <Text style={styles.h1}>Fones De Ouvido</Text>
+          <FlatList
+            data={fones}
             renderItem={({ item }: { item: Product }) => (
               <View style={styles.itemWrapper}>
                 <ProductItem product={item} />

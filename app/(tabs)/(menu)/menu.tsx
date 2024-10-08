@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 32,
         fontFamily: 'Orbitron_800ExtraBold',
-        color: 'rgb(3, 97, 221)',
-        marginBottom: 40,
+        color: '#24cc02',
+        marginBottom: 20,
     },
     menuContainer: {
         width: width * 0.8,

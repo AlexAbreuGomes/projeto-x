@@ -36,9 +36,11 @@ const styles = StyleSheet.create({
     },
 
     botao:{ 
-        width: width - 10,
+        width: width - 40,
         height: 40,
         padding: 10,
+        marginLeft:15,
+        marginBottom:35,
         borderRadius: 5,
         alignItems: 'center',
        

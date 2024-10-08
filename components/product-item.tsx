@@ -2,6 +2,7 @@ import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'rea
 import { Product } from "../types/product";
 import { ButtonShop } from "./button-general";
 import { router } from "expo-router";
+import { RFPercentage } from 'react-native-responsive-fontsize'; // Para fontes responsivas
 
 // Obtenha as dimensões da tela
 const { width } = Dimensions.get('window');
@@ -39,6 +40,7 @@ export const ProductItem = ({ product }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,  // Permite que o contêiner expanda conforme necessário
         alignItems: 'center',
         backgroundColor: '#fffdfd',
         borderRadius: 10,
@@ -49,31 +51,32 @@ const styles = StyleSheet.create({
         elevation: 5,
         margin: 10,
         width: width * 0.45,  // O item ocupará cerca de 45% da largura da tela
-        height: 285,  // Ajustado para acomodar bem os elementos
     },
     touchable: {
         width: '100%',
-        height: 180,  // Ajuste o tamanho da área de toque
+        height: undefined,  // Remover altura fixa
+        aspectRatio: 1, // Ajusta o tamanho da área de toque
     },
     image: {
         width: '100%',
-        height: '100%',  // A imagem vai se ajustar ao tamanho do Touchable
+        height: undefined, // Remover altura fixa
+        aspectRatio: 1, // Ajusta a imagem para manter uma proporção
         borderRadius: 10,
     },
     infoProduct: {
-        padding: 10,  // Adiciona espaço entre a imagem e os detalhes do produto
+        padding: 10,  // Ajuste conforme necessário
         alignItems: 'center',
         justifyContent: 'center',
     },
     infoProductName: {
-        fontSize: 20,  // Ajuste o tamanho da fonte para ficar mais responsivo
+        fontSize: RFPercentage(2.8), // Ajuste conforme necessário
         fontFamily: 'Orbitron_600SemiBold',
-        textAlign: 'center',
+        textAlign: 'justify',
         marginBottom: 5,
         color: '#0361dd',
     },
     infoProductPrice: {
-        fontSize: 26,  // Ajuste o tamanho da fonte para o preço
+        fontSize: RFPercentage(3.2), // Ajuste conforme necessário
         fontFamily: 'Orbitron_800ExtraBold',
         color: '#24cc02',
     }

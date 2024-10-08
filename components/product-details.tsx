@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'rea
 import { Product } from '../types/product';  // Importa o tipo de produto
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ButtonShop } from './button-general';
+import { RFPercentage } from 'react-native-responsive-fontsize'; // Para fontes responsivas
 
 const { width } = Dimensions.get('window');
 // Defina as props que o componente vai receber
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
     },
 
     containerImage: {
+        justifyContent:'center',
         alignItems: 'center',
         backgroundColor: '#ffffff',
         borderRadius: 10,
@@ -49,8 +51,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 5,
-        margin: 10,
-        width: width - 30,  // O item ocupará cerca de 45% da largura da tela
+        margin: 15,
+        width: width - 40, 
         height: 250,  // Ajustado para acomodar bem os elementos
     },
     touchable: {
@@ -67,21 +69,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: width - 30,  // O item ocupará cerca de 45% da largura da tela
-        height: 300,  // Ajustado para acomodar bem os elementos
+        height: undefined,  // Ajustado para acomodar bem os elementos
+        marginLeft:10,
+        marginBottom:50
     },
     infoProductName: {
-        fontSize: 25,  // Ajuste o tamanho da fonte para ficar mais responsivo
+        fontSize: RFPercentage(2.8), // Ajuste conforme necessário
         fontFamily: 'Orbitron_600SemiBold',
         textAlign: 'center',
-        marginBottom: 15,
         color: '#0361dd',
     },
 
     infoProductDescripion: {
-        fontSize: 25,  // Ajuste o tamanho da fonte para ficar mais responsivo
+        fontSize: RFPercentage(2.8), // Ajuste conforme necessário
         fontFamily: 'Orbitron_600SemiBold',
-        textAlign: 'center',
-        marginBottom: 15,
+        textAlign: 'justify',
+        marginTop: 15,
+        marginBottom:15,
         color: '#0361dd',
     },
 

@@ -19,7 +19,7 @@ export default function ProductDetailsPage() {
                 return carregadores;
             case 'cabos':
                 return cabos;
-            case 'powerBanks':
+            case 'powerbanks':
                 return powerBanks;
             case 'acessorios':
                 return acessorios;
