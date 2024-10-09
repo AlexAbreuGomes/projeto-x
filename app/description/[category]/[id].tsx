@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { carregadores } from '../../../data/dataCarregadores';
 import { powerBanks } from '../../../data/dataPowerBanks';
@@ -8,6 +8,7 @@ import { fones } from '../../../data/dataFones';
 import { Product } from '../../../types/product';
 import { ProductDetails } from '../../../components/product-details';  // Importa o novo componente
 import { BackButton } from '../../../components/backButton';
+import React from 'react';
 
 export default function ProductDetailsPage() {
     const { id, category }: { id: string; category: string } = useLocalSearchParams();
@@ -66,7 +67,7 @@ export default function ProductDetailsPage() {
         <><Stack.Screen
             options={{
                 headerShown: true,
-                title:'',
+                title: category,
                 headerTitleStyle: {
                     fontSize: 30,
                     fontFamily: 'Orbitron_700Bold',
@@ -77,11 +78,13 @@ export default function ProductDetailsPage() {
                     <BackButton onPress={() => router.back()} /> // Botão de voltar
                 ),
             }} />
-            
+            <ScrollView>
             <View style={styles.container}>
-                {/* Renderize o produto usando o novo componente ProductDetails */}
+                
                 <ProductDetails product={product} />
-            </View></>
+            </View>
+            </ScrollView>
+            </>
     );
 }
 
@@ -90,7 +93,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
         backgroundColor: '#f5f5f5',
     },
 });

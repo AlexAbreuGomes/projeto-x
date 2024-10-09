@@ -9,7 +9,7 @@ export const cabos: Product[] = [
         price: 14.99,
         url: "https://www.baseus.com/products/usb-c-to-usb-c-cable-100w",
         category: 'cabos',
-        description: 'O Cabo USB-C Baseus 100W oferece carregamento rápido e eficiente para dispositivos compatíveis com USB-C. Com alta durabilidade, é ideal para quem busca um cabo robusto para carregamento rápido de até 100W.'
+        description: 'O Cabo USB-C Baseus 100W oferece carregamento rápido e eficiente para dispositivos compatíveis com USB-C. Com alta durabilidade, é ideal para quem busca um cabo robusto para carregamento rápido de até 100W.O Cabo USB-C Baseus 100W oferece carregamento rápido e eficiente para dispositivos compatíveis com USB-C. Com alta durabilidade, é ideal para quem busca um cabo robusto para carregamento rápido de até 100W.'
     },
     {
         id: 2,
