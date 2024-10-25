@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';  // Importar o hook de navegação
 
 const { width } = Dimensions.get('window');
 
 export default function MenuPage() {
+    const router = useRouter();  // Instanciar o hook para navegação
+
     const handleProducts = () => {
-        console.log('Navegando para Produtos');
+        router.push('/administrador')
     };
 
     const handleAbout = () => {
@@ -18,7 +21,7 @@ export default function MenuPage() {
     };
 
     const handleContact = () => {
-        console.log('Navegando para Contato');
+        router.push('/contato');  // Navegar para a página de Contato
     };
 
     return (
@@ -27,7 +30,7 @@ export default function MenuPage() {
             
             <View style={styles.menuContainer}>
                 <TouchableOpacity onPress={handleProducts} style={styles.menuButton}>
-                    <Text style={styles.menuButtonText}>Produtos</Text>
+                    <Text style={styles.menuButtonText}>Administrador</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={handleAbout} style={styles.menuButton}>

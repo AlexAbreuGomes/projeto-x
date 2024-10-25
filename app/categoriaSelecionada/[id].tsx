@@ -1,171 +1,114 @@
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { Text, View, FlatList, Image, StyleSheet, Button, Dimensions } from 'react-native';
+import { Text, View, FlatList, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-// Importe todos os arquivos de dados de produtos
-import { carregadores } from '../../data/dataCarregadores';
-import { cabos } from '../../data/dataCabos';
-import { powerBanks } from '../../data/dataPowerBanks';
-import { acessorios } from '../../data/dataAcessorios';
-import { ProductItem } from '../../components/product-item';0
 import { BackButton } from '../../components/backButton';
-import { fones } from '../../data/dataFones';
-
+import { ProductItem } from '../../components/product-item';
+import useFetchProducts from '../../hooks/categoryProducts';
+import React from 'react';
 
 const screenWidth = Dimensions.get('window').width;
 
-export default function ProductsScreen() {
-  const { id } = useLocalSearchParams();  // Pega o ID da categoria da URL
-  const router = useRouter();  // Usado para navegação
+export default function CategoriaSelecionadaScreen() {
+  const { id } = useLocalSearchParams(); // Pega o ID da categoria da URL
+  const router = useRouter(); // Usado para navegação
 
   // Verifique se o ID é uma string e converta para número
   const categoryId = Array.isArray(id) ? parseInt(id[0]) : parseInt(id as string);
 
-  // Mapeamento das categorias por ID
-  const categoryMap: { [key: number]: { name: string, products: any[] } } = {
-    1: { name: 'Carregadores', products: carregadores },
-    2: { name: 'Cabos', products: cabos },
-    3: { name: 'Fones de Ouvido', products: fones },
-    4: { name: 'Powerbanks', products: powerBanks },
-    5: { name: 'Acessórios', products: acessorios },
-    
-  };
+  // Utiliza o hook customizado para buscar produtos da API
+  const { products, loading, error } = useFetchProducts(categoryId);
 
-  // Pega a categoria e os produtos correspondentes
-  const category = categoryMap[categoryId]?.name;
-  const products = categoryMap[categoryId]?.products;
+  // Caso esteja carregando os dados
+  if (loading) {
+    return (
+      <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#0361dd" />
+      </SafeAreaView>
+    );
+  }
 
-
-  // Caso a categoria não exista, retorne null ou uma mensagem de erro
-  if (!category || !products) {
+  // Caso ocorra erro ou a categoria não tenha produtos, exibir uma mensagem
+  if (error || !products.length) {
     return (
       <>
-      
         <Stack.Screen
           options={{
-            headerShown: true, 
-            title: 'Erro',  
+            headerShown: true,
+            title: 'Erro',
             headerTitleStyle: {
-              fontSize: 30,         
-              fontFamily: 'Orbitron_700Bold', 
-              color: '#0361dd',     
+              fontSize: 30,
+              fontFamily: 'Orbitron_700Bold',
+              color: '#0361dd',
             },
             headerTitleAlign: 'center',
-            headerLeft: () => (
-              <BackButton onPress={() => router.back()} />  // Botão de voltar
-            ),
+            headerLeft: () => <BackButton onPress={() => router.back()} />,
           }}
         />
-  
+
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={styles.infoProductNull}>Categoria não encontrada</Text>
+          <Text style={styles.infoProductNull}>{error ? 'Erro ao carregar produtos' : 'Categoria não encontrada'}</Text>
           <Text style={styles.infoProductNullEmoji}>😒</Text>
-          <Text style={styles.infoProductNull2}>Senta e chora</Text>
+          <Text style={styles.infoProductNull2}>Tente novamente mais tarde</Text>
         </SafeAreaView>
       </>
     );
   }
+
+  // Exibição dos produtos
   return (
     <>
       <Stack.Screen
         options={{
-          headerShown: true, 
-          title: category,  
+          headerShown: true,
+          title: ``, // Coloque o nome dinâmico da categoria
           headerTitleStyle: {
-            fontSize: 30,        
-            fontFamily: 'Orbitron_700Bold', 
-            color: '#0361dd',    
+            fontSize: 30,
+            fontFamily: 'Orbitron_700Bold',
+            color: '#0361dd',
           },
           headerTitleAlign: 'center',
-          headerLeft: () => (
-            <BackButton onPress={() => router.back()} />  // Botão de voltar
-          ),
+          headerLeft: () => <BackButton onPress={() => router.back()} />,
         }}
       />
 
-
       <SafeAreaView style={styles.container}>
-
-        <View style={styles.container} >
-
-          <FlatList
-            style={{ flex: 1 }}
-            contentContainerStyle={{ paddingBottom: 0 }}
-            data={products}
-
-            renderItem={({ item }) => (
-              <View style={styles.container}>
-                <ProductItem product={item} />
-              </View>
-            )}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={2}  // Exibir 2 itens por linha
-            showsHorizontalScrollIndicator={false}
-            pagingEnabled={true}
-            snapToAlignment="center"
-            decelerationRate="fast"
-          />
-        </View>
+        <FlatList
+          style={{ flex: 1 }}
+          contentContainerStyle={{ paddingBottom: 20 }}
+          data={products}
+          renderItem={({ item }) => (
+            <View style={styles.container}>
+              <ProductItem product={item} />
+            </View>
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          showsHorizontalScrollIndicator={false}
+        />
       </SafeAreaView>
     </>
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
-
-
-  touchable: {
-    width: '100%',
-    height: 200,
-  },
-  image: {
-    width: '100%',
-    height: 200,
-    borderRadius: 10,
-  },
-
-  infoProduct: {
-    alignItems: 'center',
-
-    fontFamily: 'Orbitron_600SemiBold',
-  },
-
   infoProductNull: {
     fontSize: 50,
     fontFamily: 'Orbitron_600SemiBold',
     textAlign: 'center',
     margin: 10,
     color: '#0361dd',
-
   },
-
   infoProductNull2: {
     fontSize: 45,
     fontFamily: 'Orbitron_600SemiBold',
     textAlign: 'center',
     margin: 10,
     color: '#24cc02',
-
   },
-
   infoProductNullEmoji: {
     fontSize: 80,
-  
-  },
-
-  infoProductPrice: {
-    fontSize: 25,
-    fontFamily: 'Orbitron_800ExtraBold',
-    color: '#24cc02',
-  },
-  itemWrapper2: {
-    width: screenWidth,
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontFamily: 'Orbitron_900Black',
   },
 });

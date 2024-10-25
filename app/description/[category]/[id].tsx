@@ -1,48 +1,64 @@
-import { View, StyleSheet, Text } from 'react-native';
+// src/app/[id].tsx
+import React from 'react';
+import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
-import { carregadores } from '../../../data/dataCarregadores';
-import { powerBanks } from '../../../data/dataPowerBanks';
-import { acessorios } from '../../../data/dataAcessorios';
-import { cabos } from '../../../data/dataCabos';
-import { fones } from '../../../data/dataFones';
-import { Product } from '../../../types/product';
-import { ProductDetails } from '../../../components/product-details';  // Importa o novo componente
+import { ProductDetails } from '../../../components/product-details'; // Importa o componente ProductDetails
 import { BackButton } from '../../../components/backButton';
+import { useProductById } from '../../../hooks/useProductById'; // Importa o novo hook
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProductDetailsPage() {
-    const { id, category }: { id: string; category: string } = useLocalSearchParams();
+    const { id } = useLocalSearchParams(); // Obtém o ID do produto da URL
+    const { product, loading, error } = useProductById(id as string); // Usa o hook para buscar o produto
 
-    // Função para selecionar a lista com base na categoria
-    const getProductList = (category: string): Product[] => {
-        switch (category) {
-            case 'carregadores':
-                return carregadores;
-            case 'cabos':
-                return cabos;
-            case 'powerbanks':
-                return powerBanks;
-            case 'acessorios':
-                return acessorios;
-            case 'fones':
-                return fones;
-            default:
-                return [];
-        }
-    };
+    if (loading) {
+        return (
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <ActivityIndicator size="large" color="#0361dd" />
+          </SafeAreaView>
+        );
+      }
 
-    // Obter a lista de produtos correta
-    const productList: Product[] = getProductList(category);
-
-    // Procurando o produto na lista selecionada
-    const product: Product | undefined = productList.find((item: Product) => item.id === Number(id));
+    if (error) {
+        return (
+            
+            <View style={styles.container}>
+                <Text>{error}</Text>
+            </View>
+        ); // Mostra uma mensagem de erro
+    }
 
     if (!product) {
         return (
             <>
+                <Stack.Screen
+                    options={{
+                        headerShown: true,
+                        title: '',
+                        headerTitleStyle: {
+                            fontSize: 30,
+                            fontFamily: 'Orbitron_700Bold',
+                            color: '#0361dd',
+                        },
+                        headerTitleAlign: 'center',
+                        headerLeft: () => (
+                            <BackButton onPress={() => router.back()} /> // Botão de voltar
+                        ),
+                    }} 
+                />
+                <View style={styles.container}>
+                    <Text>Produto não encontrado.</Text>
+                </View>
+            </>
+        );
+    }
+
+    return (
+        <>
             <Stack.Screen
                 options={{
                     headerShown: true,
-                    title: category,
+                    title: product.name,
                     headerTitleStyle: {
                         fontSize: 30,
                         fontFamily: 'Orbitron_700Bold',
@@ -52,36 +68,13 @@ export default function ProductDetailsPage() {
                     headerLeft: () => (
                         <BackButton onPress={() => router.back()} /> // Botão de voltar
                     ),
-                }} />
-                
-                <View style={styles.container}>
-                    <Text>Produto não encontrado.</Text>
-                </View></>
-        );
-    }
-
-    return (
-
-
-        <><Stack.Screen
-            options={{
-                headerShown: true,
-                title:'',
-                headerTitleStyle: {
-                    fontSize: 30,
-                    fontFamily: 'Orbitron_700Bold',
-                    color: '#0361dd',
-                },
-                headerTitleAlign: 'center',
-                headerLeft: () => (
-                    <BackButton onPress={() => router.back()} /> // Botão de voltar
-                ),
-            }} />
-            
+                }} 
+            />
             <View style={styles.container}>
-                {/* Renderize o produto usando o novo componente ProductDetails */}
+                {/* Renderize o produto usando o componente ProductDetails */}
                 <ProductDetails product={product} />
-            </View></>
+            </View>
+        </>
     );
 }
 

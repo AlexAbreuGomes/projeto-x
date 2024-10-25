@@ -4,6 +4,8 @@ import { ButtonShop } from "./button-general";
 import { router } from "expo-router";
 import { RFPercentage } from 'react-native-responsive-fontsize'; // Para fontes responsivas
 
+
+
 // Obtenha as dimensões da tela
 const { width } = Dimensions.get('window');
 
@@ -15,7 +17,7 @@ export const ProductItem = ({ product }: Props) => {
     // Função para navegar para a página de detalhes do produto
     const handlePress = () => {
         // Inclui a categoria e o id na navegação
-        router.push(`/description/${product.category}/${product.id}`);
+        router.push(`/description/${product.category_id}/${product.id}`);
     }
 
     return (

@@ -32,19 +32,14 @@ export default function TabLayout() {
                 }}
             />
 
-<Tabs.Screen
+            <Tabs.Screen
 
-name="(sobre)"
-options={{
-    title: 'SOBRE',
-    tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
-}}
-/>
-
-            
-
+                name="(sobre)"
+                options={{
+                    title: 'SOBRE',
+                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
+                }}
+            />
         </Tabs>
-
-
     );
 }
