@@ -1,4 +1,4 @@
-// src/app/[id].tsx
+
 import React from 'react';
 import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
@@ -68,6 +68,7 @@ export default function ProductDetailsPage() {
                     headerLeft: () => (
                         <BackButton onPress={() => router.back()} /> // Botão de voltar
                     ),
+
                 }} 
             />
             <View style={styles.container}>
@@ -75,6 +76,40 @@ export default function ProductDetailsPage() {
                 <ProductDetails product={product} />
             </View>
         </>
+// =======
+//                 }} />
+                
+//                 <View style={styles.container}>
+//                     <Text>Produto não encontrado.</Text>
+//                 </View></>
+//         );
+//     }
+
+//     return (
+
+
+//         <><Stack.Screen
+//             options={{
+//                 headerShown: true,
+//                 title: category,
+//                 headerTitleStyle: {
+//                     fontSize: 30,
+//                     fontFamily: 'Orbitron_700Bold',
+//                     color: '#0361dd',
+//                 },
+//                 headerTitleAlign: 'center',
+//                 headerLeft: () => (
+//                     <BackButton onPress={() => router.back()} /> // Botão de voltar
+//                 ),
+//             }} />
+//             <ScrollView>
+//             <View style={styles.container}>
+                
+//                 <ProductDetails product={product} />
+//             </View>
+//             </ScrollView>
+//             </>
+// >>>>>>> 46bfa60b9c3cde3ca14a466f8387759558cb7b9d
     );
 }
 
@@ -83,7 +118,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
         backgroundColor: '#f5f5f5',
     },
 });
