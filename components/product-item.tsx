@@ -1,8 +1,9 @@
 import { Image, StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { Product } from "../types/product";
-import { ButtonShop } from "./button-general";
+import { ButtonGeneric } from "./button-general";
 import { router } from "expo-router";
 import { RFPercentage } from 'react-native-responsive-fontsize'; // Para fontes responsivas
+import React from 'react';
 
 
 

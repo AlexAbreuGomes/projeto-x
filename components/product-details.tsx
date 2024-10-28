@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Product } from '../types/product';  // Importa o tipo de produto
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ButtonShop } from './button-general';
+import { ButtonGeneric } from './button-general';
 import { RFPercentage } from 'react-native-responsive-fontsize'; // Para fontes responsivas
 
 const { width } = Dimensions.get('window');
@@ -32,7 +32,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                 </View>
             </ScrollView>
             <View>
-                <ButtonShop product={product} />
+                <ButtonGeneric url={product.url} label="Comprar" />
             </View>
         </SafeAreaView>
     );
