@@ -43,10 +43,15 @@ export default function CategoriasScreen() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.container}>
           <View style={styles.categoriesContainer}>
-            {loading ? (
+            {
+            loading ? (
               <ActivityIndicator size="large" color="#0361dd" /> // Indicador de carregamento
             ) : error ? (
-              <Text style={styles.errorText}>{error}</Text> // Exibição do erro
+              <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={styles.infoProductNull}>{error ? 'Erro ao carregar categorias' : 'Categorias não encontradas'}</Text>
+          <Text style={styles.infoProductNullEmoji}>😒</Text>
+          <Text style={styles.infoProductNull2}>Tente novamente mais tarde</Text>
+        </SafeAreaView>
             ) : (
               categories.map(({ id, title, image }) => ( // Alterar 'nome' e 'imagem' para os nomes corretos retornados pela API
                 <TouchableOpacity key={id} style={styles.category} onPress={() => handleCategoryPress(id)}>
@@ -105,10 +110,21 @@ const styles = StyleSheet.create({
     fontFamily: 'Orbitron_600SemiBold',
     color: '#0361dd',
   },
-  errorText: {
-    fontSize: 18,
-    color: 'red',
+  infoProductNull: {
+    fontSize: 40,
+    fontFamily: 'Orbitron_600SemiBold',
     textAlign: 'center',
-    marginVertical: 20,
+    margin: 10,
+    color: '#0361dd',
+  },
+  infoProductNull2: {
+    fontSize: 45,
+    fontFamily: 'Orbitron_600SemiBold',
+    textAlign: 'center',
+    margin: 10,
+    color: '#24cc02',
+  },
+  infoProductNullEmoji: {
+    fontSize: 80,
   },
 });

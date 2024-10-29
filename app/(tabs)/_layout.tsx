@@ -6,13 +6,14 @@ export default function TabLayout() {
     return (
         <Tabs screenOptions={{
             headerShown: false,
-            tabBarActiveTintColor: '#0361dd'
+            tabBarActiveTintColor: '#0361dd',
+            tabBarLabelStyle: { fontFamily: 'Orbitron_600SemiBold', fontSize: 12 }, // Aplicando a fonte personalizada
         }}>
             <Tabs.Screen
                 name="index"
                 options={{
-                    title: 'INICIO',
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+                    title: 'INICÍO',
+                    tabBarIcon: ({ color }) => <FontAwesome size={25} name="home" color={color} />,
                 }}
             />
 
@@ -20,7 +21,7 @@ export default function TabLayout() {
                 name="(categorias)"
                 options={{
                     title: 'CATEGORIAS',
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+                    tabBarIcon: ({ color }) => <FontAwesome size={25} name="list" color={color} />,
                 }}
             />
 
@@ -29,16 +30,17 @@ export default function TabLayout() {
                 name="(menu)"
                 options={{
                     title: 'MENU',
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="bars" color={color} />,
+                    tabBarIcon: ({ color }) => <FontAwesome size={25} name="bars" color={color} />,
                 }}
             />
+            
 
             <Tabs.Screen
 
                 name="(sobre)"
                 options={{
                     title: 'SOBRE',
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="gear" color={color} />,
+                    tabBarIcon: ({ color }) => <FontAwesome size={25} name="gear" color={color} />,
                 }}
             />
         </Tabs>

@@ -4,7 +4,7 @@ import { ButtonGeneric } from '../components/button-general';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackButton } from '../components/backButton';
 import { router, Stack } from 'expo-router';
-import { useFonts, Orbitron_600SemiBold, Orbitron_700Bold, Orbitron_800ExtraBold, Orbitron_900Black } from '@expo-google-fonts/orbitron';
+
 
 const { width } = Dimensions.get('window');
 
@@ -12,7 +12,7 @@ export default function Contato() {
   const perfilUrl = `https://avatars.githubusercontent.com/u/153616106?v=4`;
   const whatsappUrl = `https://wa.me/5584981823423?text=${encodeURIComponent("Olá, gostaria de falar com o suporte.")}`;
   const githubUrl = `https://github.com/AlexAbreuGomes`;
-  const linkedinUrl = `https://www.linkedin.com/feed/`;
+  const linkedinUrl = `https://www.linkedin.com/in/alexdeabreu`;
   const emailUrl = `mailto:alex.abreu.softwaredeveloper@gmail.com?subject=${encodeURIComponent("Suporte ao Cliente")}&body=${encodeURIComponent("Olá, gostaria de saber mais sobre...")}`;
 
   return (
@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    fontFamily:'Orbitron_600SemiBold',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fffdfd',
