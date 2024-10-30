@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity, Image, ActivityIndicator, Alert } from 'react-native';
-import { useFonts, Orbitron_600SemiBold, Orbitron_700Bold, Orbitron_800ExtraBold, Orbitron_900Black } from '@expo-google-fonts/orbitron';
-import CheckBox from '@react-native-community/checkbox';
+// src/screens/AddProduct.tsx
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image, Alert } from 'react-native';
 import { useCategories } from '../hooks/useCategories';
+
+import { CustomCheckbox } from '../components/CustomCheckbox';
 
 export default function AddProduct() {
   const [name, setName] = useState<string>('');
@@ -21,8 +22,8 @@ export default function AddProduct() {
   const handleCategoryToggle = (categoryId: number) => {
     setSelectedCategories((prevSelected) =>
       prevSelected.includes(categoryId)
-        ? prevSelected.filter(id => id !== categoryId) // Desmarcar a categoria se já estiver selecionada
-        : [...prevSelected, categoryId] // Marcar a categoria se não estiver selecionada
+        ? prevSelected.filter(id => id !== categoryId)
+        : [...prevSelected, categoryId]
     );
   };
 
@@ -33,7 +34,6 @@ export default function AddProduct() {
     }
 
     // Aqui você pode enviar os dados para o backend
-    // Simulação de sucesso ao adicionar produto
     setSuccess('Produto adicionado com sucesso!');
   };
 
@@ -76,18 +76,18 @@ export default function AddProduct() {
 
       <Text style={styles.categoryTitle}>Selecione a Categoria:</Text>
       {loading ? (
-        <ActivityIndicator size="large" color="#0361dd" />
+        <Text>Carregando categorias...</Text>
       ) : fetchError ? (
         <Text style={styles.errorText}>Erro ao carregar categorias. Tente novamente mais tarde.</Text>
       ) : (
         categories.map(({ id, title, image }) => (
           <View key={id} style={styles.categoryContainer}>
-            <CheckBox
+            <CustomCheckbox
               value={selectedCategories.includes(id)}
               onValueChange={() => handleCategoryToggle(id)}
             />
             <Image source={{ uri: image }} style={styles.categoryImage} />
-            <Text style={styles.categoryTitle}>{title}</Text>
+            <Text style={styles.categoryText}>{title}</Text>
           </View>
         ))
       )}
@@ -139,6 +139,10 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 10,
     marginRight: 10,
+  },
+  categoryText: {
+    fontFamily: 'Orbitron_600SemiBold',
+    color: '#0361dd',
   },
   success: {
     color: 'green',

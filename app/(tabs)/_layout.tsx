@@ -7,7 +7,7 @@ export default function TabLayout() {
         <Tabs screenOptions={{
             headerShown: false,
             tabBarActiveTintColor: '#0361dd',
-            tabBarLabelStyle: { fontFamily: 'Orbitron_600SemiBold', fontSize: 12 }, // Aplicando a fonte personalizada
+            tabBarLabelStyle: { fontFamily: 'Orbitron_600SemiBold', fontSize: 13 }, // Aplicando a fonte personalizada
         }}>
             <Tabs.Screen
                 name="index"
