@@ -6,12 +6,18 @@ import { BannerItem } from '../../../components/VideoBanner';
 import { videoBanners } from '../../../data/videoBanners';
 import { Banners } from '../../../types/product';
 import { useCategories } from '../../../hooks/useCategories'; // Importando o hook customizado
+import useLoadFonts from '../../../hooks/useLoadFonts'; // Importa o hook personalizado
 
 const screenWidth = Dimensions.get('window').width;
 
 export default function CategoriasScreen() {
   const router = useRouter();
+  const fontsLoaded = useLoadFonts(); // Usa o hook de carregamento de fontes
   const { categories, loading, error } = useCategories(); // Usando o hook customizado para buscar categorias
+
+   if (!fontsLoaded) {
+    return null; // Retorna nulo até que as fontes sejam carregadas
+  }
 
   const handleCategoryPress = (categoryId: number) => {
     router.push(`/categoriaSelecionada/${categoryId}`);

@@ -3,20 +3,25 @@ import React from "react";
 import { RFPercentage } from "react-native-responsive-fontsize";
 
 type ButtonShopProps = {
-    url: string;
-    label: string; // Texto do botão para maior flexibilidade
+    label: string;               // Texto do botão
+    url?: string;                // URL opcional para navegação externa
+    onPress?: () => void;        // Função de ação local opcional
 };
 
 const { width } = Dimensions.get('window');
 
-export const ButtonGeneric = ({ url, label }: ButtonShopProps) => {
-    const openLink = () => {
-        Linking.openURL(url);
+export const ButtonGeneric = ({label, url, onPress }: ButtonShopProps )=> {
+    const handlePress = () => {
+        if (url) {
+            Linking.openURL(url);
+        }else if (onPress){
+            onPress();
+        }
     }
 
     return (
         <Pressable
-            onPress={openLink}
+            onPress={handlePress}
             style={({ pressed }) => [
                 {
                     backgroundColor: pressed ?'rgb(36, 204, 2)'  : 'rgb(3, 97, 221)',

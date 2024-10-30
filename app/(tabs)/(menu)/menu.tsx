@@ -2,10 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';  // Importar o hook de navegação
+import useLoadFonts from '../../../hooks/useLoadFonts'; // Importa o hook personalizado
 
 const { width } = Dimensions.get('window');
 
 export default function MenuPage() {
+    // const fontsLoaded = useLoadFonts(); // Usa o hook de carregamento de fontes
+
+    // if (!fontsLoaded) {
+    //     return null; // Retorna nulo até que as fontes sejam carregadas
+    //   }
+
     const router = useRouter();  // Instanciar o hook para navegação
 
     const handleProducts = () => {

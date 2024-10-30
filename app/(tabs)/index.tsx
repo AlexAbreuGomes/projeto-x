@@ -1,43 +1,29 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { Image, StyleSheet, Text, View, StatusBar, FlatList, Dimensions, ScrollView } from 'react-native';
 import { Banners, Product } from '../../types/product';
-import { useFonts, Orbitron_600SemiBold, Orbitron_700Bold, Orbitron_800ExtraBold, Orbitron_900Black } from '@expo-google-fonts/orbitron';
 import { ProductItem } from '../../components/product-item';
 import { videoBanners } from '../../data/videoBanners';
 import { BannerItem } from '../../components/VideoBanner';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import * as SplashScreen from 'expo-splash-screen'; // Importa o SplashScreen
+import useLoadFonts from '../../hooks/useLoadFonts'; // Importa o hook personalizado
 import { useProducts } from '../../hooks/useProducts';
 
-SplashScreen.preventAutoHideAsync(); // Evita que o SplashScreen feche automaticamente
 
 const screenWidth = Dimensions.get('window').width;
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
-    Orbitron_600SemiBold,
-    Orbitron_700Bold,
-    Orbitron_800ExtraBold,
-    Orbitron_900Black,
-  });
-
-
-
+ 
+  const fontsLoaded = useLoadFonts(); // Usa o hook de carregamento de fontes
   const products = useProducts(); // Usa o hook para obter produtos
 
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
   if (!fontsLoaded) {
-    return null;
+    return null; // Retorna nulo até que as fontes sejam carregadas
   }
 
+
+
   return (
-    <SafeAreaView onLayout={onLayoutRootView} style={styles.container}>
+    <SafeAreaView  style={styles.container}>
       <ScrollView>
         <StatusBar />
         <View>
