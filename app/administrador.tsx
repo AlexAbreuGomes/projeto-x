@@ -102,7 +102,10 @@ export default function AddProduct() {
           ))
         )}
 
-        <ButtonGeneric label = "Adicionar Produto" onPress={handleAddProduct}/>
+<View style={{ alignItems: 'center', marginTop: 10 }}>
+  <ButtonGeneric label="Adicionar Produto" onPress={handleAddProduct} />
+</View>
+
         {success ? <Text style={styles.success}>{success}</Text> : null}
         {error ? <Text style={styles.error}>{error}</Text> : null}
       </ScrollView></>
@@ -111,6 +114,8 @@ export default function AddProduct() {
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent:'center',
+    alignContent:'center',
     padding: 20,
     backgroundColor: '#fff',
   },

@@ -11,9 +11,9 @@ const useFetchProducts = (categoryId: string | number | null) => {
     const fetchProdutos = async () => {
       setLoading(true); // Inicia o carregamento
       try {
-        const response = await axios.get(`http://10.6.2.78:3000/produtosCategoria?categoryId=${categoryId}`);
+        const response = await axios.get(`http://192.168.0.17:3000/produtosCategoria?categoryId=${categoryId}`);
         // const response = await axios.get(`https://eaf8-2804-29b8-50c6-c618-3071-4714-ff08-1af8.ngrok-free.app/produtosCategoria?categoryId=${categoryId}`);
-        console.log(response.data); // Verificar o que está sendo retornado
+        
         setProducts(response.data); // Acessa os dados diretamente do response.data
       } catch (err) {
         if (axios.isAxiosError(err)) {
