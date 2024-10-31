@@ -1,4 +1,3 @@
-// src/screens/AddProduct.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image, Alert } from 'react-native';
 import { useCategories } from '../hooks/useCategories';
@@ -6,20 +5,21 @@ import { CustomCheckbox } from '../components/CustomCheckbox';
 import { router, Stack } from 'expo-router';
 import { BackButton } from '../components/backButton';
 import { ButtonGeneric } from '../components/button-general';
+import { useAddProduct } from '../hooks/useAddProduct'; // Importa o hook
+
 export default function AddProduct() {
-
-
   const [name, setName] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const [price, setPrice] = useState<string>('');
   const [url, setUrl] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [success, setSuccess] = useState<string>('');
-  const [error, setError] = useState<string>('');
 
   // Hook para obter as categorias
   const { categories, loading, error: fetchError } = useCategories();
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+
+  // Hook para adicionar produtos
+  const { addProduct, isLoading, success, error } = useAddProduct();
 
   // Função para lidar com a seleção das categorias
   const handleCategoryToggle = (categoryId: number) => {
@@ -36,54 +36,80 @@ export default function AddProduct() {
       return;
     }
 
-    // Aqui você pode enviar os dados para o backend
-    setSuccess('Produto adicionado com sucesso!');
+    const priceNumber = parseFloat(price); // Converte o preço para número
+    if (isNaN(priceNumber)) {
+      Alert.alert('Preço inválido');
+      return;
+    }
+
+    const productData = {
+      name,
+      image,
+      price: priceNumber,
+      url,
+      description,
+      category_id: selectedCategories[0], // Usando apenas a primeira categoria para simplificar
+    };
+
+    await addProduct(productData); // Chama o hook para enviar o produto
+
+    if (success) {
+      Alert.alert('Sucesso', 'Produto adicionado com sucesso!');
+    } else if (error) {
+      Alert.alert('Erro', 'Erro ao adicionar produto.');
+    }
   };
 
   return (
-    <><Stack.Screen
-      options={{
-        headerShown: true,
-        title: 'Administrador',
-        headerTitleStyle: {
-          fontSize: 30,
-          fontFamily: 'Orbitron_700Bold',
-          color: '#0361dd',
-        },
-        headerTitleAlign: 'center',
-        headerLeft: () => (
-          <BackButton onPress={() => router.back()} /> // Botão de voltar
-        ),
-      }} /><ScrollView contentContainerStyle={styles.container}>
+    <>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          title: 'Administrador',
+          headerTitleStyle: {
+            fontSize: 30,
+            fontFamily: 'Orbitron_700Bold',
+            color: '#0361dd',
+          },
+          headerTitleAlign: 'center',
+          headerLeft: () => <BackButton onPress={() => router.back()} />,
+        }}
+      />
+      <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Adicionar Produto</Text>
         <TextInput
           style={styles.input}
           placeholder="Nome do Produto"
           value={name}
-          onChangeText={setName} />
+          onChangeText={setName}
+        />
         <TextInput
           style={styles.input}
           placeholder="URL da Imagem"
           value={image}
-          onChangeText={setImage} />
+          onChangeText={setImage}
+        />
         <TextInput
           style={styles.input}
           placeholder="Preço"
           value={price}
           onChangeText={setPrice}
-          keyboardType="numeric" />
+          keyboardType="numeric"
+        />
         <TextInput
           style={styles.input}
           placeholder="URL do Produto"
           value={url}
-          onChangeText={setUrl} />
+          onChangeText={setUrl}
+        />
         <TextInput
           style={styles.inputDescription}
           placeholder="Descrição"
           value={description}
           onChangeText={setDescription}
           multiline
-          numberOfLines={4} />
+          numberOfLines={4}
+        />
 
         <Text style={styles.categoryTitle}>Selecione a Categoria:</Text>
         {loading ? (
@@ -95,27 +121,30 @@ export default function AddProduct() {
             <View key={id} style={styles.categoryContainer}>
               <CustomCheckbox
                 value={selectedCategories.includes(id)}
-                onValueChange={() => handleCategoryToggle(id)} />
+                onValueChange={() => handleCategoryToggle(id)}
+              />
               <Image source={{ uri: image }} style={styles.categoryImage} />
               <Text style={styles.categoryText}>{title}</Text>
             </View>
           ))
         )}
 
-<View style={{ alignItems: 'center', marginTop: 10 }}>
-  <ButtonGeneric label="Adicionar Produto" onPress={handleAddProduct} />
-</View>
+        <View style={{ alignItems: 'center', marginTop: 10 }}>
+          <ButtonGeneric label="Adicionar Produto" onPress={handleAddProduct} />
+        </View>
 
-        {success ? <Text style={styles.success}>{success}</Text> : null}
-        {error ? <Text style={styles.error}>{error}</Text> : null}
-      </ScrollView></>
+        {isLoading && <Text>Adicionando produto...</Text>}
+        {success && <Text style={styles.success}>Produto adicionado com sucesso!</Text>}
+        {error && <Text style={styles.error}>Erro ao adicionar produto.</Text>}
+      </ScrollView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent:'center',
-    alignContent:'center',
+    justifyContent: 'center',
+    alignContent: 'center',
     padding: 20,
     backgroundColor: '#fff',
   },
@@ -138,12 +167,12 @@ const styles = StyleSheet.create({
   inputDescription: {
     fontFamily: 'Orbitron_600SemiBold',
     color: '#0361dd',
-    height: 120, // Aumenta a altura da caixa de texto
-    textAlignVertical: 'top', // Alinha o texto no topo
+    height: 120,
+    textAlignVertical: 'top',
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 10,
-    padding: 10, // Espaço interno para o texto
+    padding: 10,
   },
   categoryTitle: {
     fontFamily: 'Orbitron_600SemiBold',
