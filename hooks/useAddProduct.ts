@@ -15,7 +15,8 @@ export const useAddProduct = () => {
 
     try {
       // Faz uma requisição POST para adicionar o produto
-      await axios.post('http://192.168.0.17:3000/products', productData); // URL da sua API
+      await axios.post('http://192.168.0.17:3000/addProduct/', productData);
+
       setSuccess(true); // Define o estado de sucesso como verdadeiro
     } catch (err) {
       console.error('Erro ao adicionar produto: ', err);
