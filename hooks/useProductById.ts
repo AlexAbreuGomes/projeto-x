@@ -12,7 +12,7 @@ export const useProductById = (id: string) => {
   const fetchProductById = async () => {
     try {
       // URL da sua API com o ID passado como parâmetro de consulta
-      const response = await axios.get(`http://192.168.0.17:3000/produtosDetalhes?Id=${id}`); 
+      const response = await axios.get(`https://api-alexabreugomes-alexs-projects-91cb9f2f.vercel.app/produtosDetalhes?Id=${id}`); 
       setProduct(response.data); // Armazena o produto no estado
     } catch (error) {
       console.error('Erro ao buscar produto: ', error);

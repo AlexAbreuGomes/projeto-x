@@ -32,7 +32,7 @@ export const ProductItem = ({ product }: Props) => {
             </TouchableOpacity>
 
             <View style={styles.infoProduct}>
-                <Text style={styles.infoProductName}>{product.name}</Text>
+                <Text style={styles.infoProductName} numberOfLines={2}>{product.name}</Text>
                 <Text style={styles.infoProductPrice}>
                     {`$ ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price).replace('$', '')}`}
                 </Text>

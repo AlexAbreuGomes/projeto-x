@@ -14,8 +14,8 @@ export const useAddProduct = () => {
     setSuccess(false); // Reseta o estado de sucesso
 
     try {
-      // Faz uma requisição POST para adicionar o produto
-      await axios.post('http://192.168.0.17:3000/addProduct/', productData);
+      // Faz uma requisição POST para adicionar o produto usando a URL da API no Vercel
+      await axios.post('https://api-alexabreugomes-alexs-projects-91cb9f2f.vercel.app/addProduto/', productData);
 
       setSuccess(true); // Define o estado de sucesso como verdadeiro
     } catch (err) {

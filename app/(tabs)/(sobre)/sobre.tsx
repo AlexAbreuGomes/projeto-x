@@ -2,8 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions, StatusBar, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useLoadFonts from '../../../hooks/useLoadFonts'; // Importa o hook personalizado
+import { BackButton } from '../../../components/backButton';
+import { router, Stack } from 'expo-router';
 
-const { width, height } = Dimensions.get('window');
+const screenWidth = Dimensions.get('window').width;
 
 export default function AboutPage() {
 
@@ -11,30 +13,48 @@ export default function AboutPage() {
 
     if (!fontsLoaded) {
         return null; // Retorna nulo até que as fontes sejam carregadas
-      }
+    }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <StatusBar />
-            <Text style={styles.title}>Sobre Nós</Text>
-            <ScrollView style={styles.content}>
-                <Text style={styles.description}>
-                    Bem-vindo à nossa loja de acessórios! Fundada em 2024, nós nos especializamos em 
-                    oferecer acessórios de alta performance que atendem às necessidades dos nossos 
-                    clientes. Nossa missão é proporcionar produtos que não apenas complementem seu estilo, 
-                    mas também ofereçam funcionalidade e durabilidade.
-                </Text>
-                <Text style={styles.description}>
-                    Cada um de nossos produtos é cuidadosamente selecionado para garantir a mais alta 
-                    qualidade, visando a satisfação e o conforto de nossos clientes. Estamos sempre em 
-                    busca das últimas tendências e inovações para trazer o que há de melhor no mercado.
-                </Text>
-                <Text style={styles.description}>
-                    Agradecemos por escolher nossa loja e esperamos que você encontre o acessório perfeito para 
-                    acompanhar seu estilo de vida ativo e dinâmico.
-                </Text>
-            </ScrollView>
-        </SafeAreaView>
+        <>
+            <Stack.Screen
+                options={{
+                    headerShown: true,
+                    title: "",
+                    headerTitleStyle: {
+                        fontSize: 30,
+                        fontFamily: 'Orbitron_700Bold',
+                        color: '#0361dd',
+                    },
+                    headerTitleAlign: 'center',
+                    headerLeft: () => (
+                        <BackButton onPress={() => router.back()} /> // Botão de voltar
+                    ),
+                }}
+            />
+            <SafeAreaView style={styles.container}>
+                <StatusBar />
+                <Text style={styles.title}>Sobre Nós</Text>
+                <ScrollView contentContainerStyle={styles.content}>
+                    <Text style={styles.description}>
+                        Bem-vindo ao nosso aplicativo de loja de acessórios! Criado em 2024, nosso app foi desenvolvido com a missão de facilitar a sua experiência de compra, oferecendo uma interface intuitiva e recursos que atendem às suas necessidades.
+                    </Text>
+                    <Text style={styles.description}>
+                        Aqui, você encontrará uma ampla variedade de acessórios de alta performance, cuidadosamente selecionados para garantir qualidade, funcionalidade e estilo. Nossa equipe está sempre atenta às últimas tendências do mercado, para que você tenha acesso aos produtos mais inovadores e desejados.
+                    </Text>
+                    <Text style={styles.description}>
+                        Além disso, nosso aplicativo oferece um sistema de navegação fácil, permitindo que você explore nossas categorias de produtos, faça buscas rápidas e acesse promoções exclusivas. Com segurança e praticidade, você poderá finalizar suas compras em poucos cliques e acompanhar o status dos seus pedidos em tempo real.
+                    </Text>
+                    <Text style={styles.description}>
+                        Agradecemos por escolher nosso aplicativo para suas compras e esperamos que você tenha uma experiência incrível, encontrando os acessórios perfeitos para complementar seu estilo de vida ativo e dinâmico.
+                    </Text>
+                    <Text style={styles.description}>
+                        Vamos juntos transformar sua forma de comprar!
+                    </Text>
+
+                </ScrollView>
+            </SafeAreaView>
+        </>
     );
 }
 
@@ -42,26 +62,26 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fffdfd',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
+        paddingHorizontal: 20,
     },
     title: {
         fontSize: 32,
         fontFamily: 'Orbitron_800ExtraBold',
         color: '#24cc02',
         marginBottom: 20,
+        textAlign: 'center',
     },
     content: {
-        width: width * 0.9, // O conteúdo ocupará 90% da largura da tela
-        height: height * 0.8, // Você pode remover isso se o ScrollView estiver apenas dentro do SafeAreaView
-        padding: 10, // Adicionando padding para criar espaço
+        paddingBottom: 20,
     },
     description: {
         fontSize: 20,
         fontFamily: 'Orbitron_600SemiBold',
         color: '#0361dd',
-        marginBottom: 20, // Aumentando a margem inferior para mais espaço entre os textos
-        textAlign:'justify'
+        width:screenWidth*0.85,
+        marginBottom: 20,
+        marginLeft:10,
+        textAlign: 'justify',
+        justifyContent:'center'
     },
 });

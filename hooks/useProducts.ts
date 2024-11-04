@@ -8,7 +8,8 @@ export const useProducts = () => {
   // Função para buscar produtos usando axios
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://192.168.0.17:3000/products'); // URL da sua API usando Ngrok
+      // Usando a URL da API no Vercel
+      const response = await axios.get('https://api-alexabreugomes-alexs-projects-91cb9f2f.vercel.app/products');
       return response.data; // Retorna os produtos recebidos
     } catch (error) {
       console.error('Erro ao buscar produtos: ', error);

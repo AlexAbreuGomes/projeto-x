@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image, Alert } from 'react-native';
-import { useCategories } from '../hooks/useCategories';
-import { CustomCheckbox } from '../components/CustomCheckbox';
+import { useCategories } from '../../hooks/useCategories';
+import { CustomCheckbox } from '../../components/CustomCheckbox';
 import { router, Stack } from 'expo-router';
-import { BackButton } from '../components/backButton';
-import { ButtonGeneric } from '../components/button-general';
-import { useAddProduct } from '../hooks/useAddProduct'; // Importa o hook
+import { BackButton } from '../../components/backButton';
+import { ButtonGeneric } from '../../components/button-general';
+import { useAddProduct } from '../../hooks/addProdutos'; // Importa o hook
 
 export default function AddProduct() {
   const [name, setName] = useState<string>('');

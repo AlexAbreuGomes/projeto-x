@@ -11,7 +11,7 @@ const useFetchProducts = (categoryId: string | number | null) => {
     const fetchProdutos = async () => {
       setLoading(true); // Inicia o carregamento
       try {
-        const response = await axios.get(`http://192.168.0.17:3000/produtosCategoria?categoryId=${categoryId}`);
+        const response = await axios.get(`https://api-alexabreugomes-alexs-projects-91cb9f2f.vercel.app/produtosCategoria?categoryId=${categoryId}`);
         // const response = await axios.get(`https://eaf8-2804-29b8-50c6-c618-3071-4714-ff08-1af8.ngrok-free.app/produtosCategoria?categoryId=${categoryId}`);
         
         setProducts(response.data); // Acessa os dados diretamente do response.data

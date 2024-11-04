@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ButtonGeneric } from './button-general';
 import { RFPercentage } from 'react-native-responsive-fontsize'; // Para fontes responsivas
 
-const { width } = Dimensions.get('window');
+const screenWidth = Dimensions.get('window').width;
 
 // Defina as props que o componente vai receber
 type ProductDetailsProps = {
@@ -73,16 +73,20 @@ const styles = StyleSheet.create({
         marginBottom: 15, // Espaçamento abaixo da descrição
     },
     infoProductName: {
-        fontSize: RFPercentage(3), // Ajuste conforme necessário
+        fontSize: RFPercentage(2.5), // Ajuste conforme necessário
         fontFamily: 'Orbitron_600SemiBold',
         textAlign: 'center',
         color: '#0361dd',
+        marginBottom: 15
     },
     infoProductDescripion: {
-        fontSize: RFPercentage(2.8), // Ajuste conforme necessário
+        fontSize: RFPercentage(2.5), // Ajuste conforme necessário
         fontFamily: 'Orbitron_600SemiBold',
         textAlign: 'justify',
         color: '#0361dd',
+        margin: 10,
+        width: screenWidth*0.80,
+        padding:10
     },
     infoProductPrice: {
         fontSize: 26,  // Ajuste o tamanho da fonte para o preço

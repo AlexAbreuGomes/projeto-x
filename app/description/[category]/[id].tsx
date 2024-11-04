@@ -60,8 +60,8 @@ export default function ProductDetailsPage() {
                     headerShown: true,
                     title: product.name,
                     headerTitleStyle: {
-                        fontSize: 30,
-                        fontFamily: 'Orbitron_700Bold',
+                        fontSize: 20,
+                        fontFamily: 'Orbitron_600SemiBold',
                         color: '#0361dd',
                     },
                     headerTitleAlign: 'center',
@@ -76,40 +76,6 @@ export default function ProductDetailsPage() {
                 <ProductDetails product={product} />
             </View>
         </>
-// =======
-//                 }} />
-                
-//                 <View style={styles.container}>
-//                     <Text>Produto não encontrado.</Text>
-//                 </View></>
-//         );
-//     }
-
-//     return (
-
-
-//         <><Stack.Screen
-//             options={{
-//                 headerShown: true,
-//                 title: category,
-//                 headerTitleStyle: {
-//                     fontSize: 30,
-//                     fontFamily: 'Orbitron_700Bold',
-//                     color: '#0361dd',
-//                 },
-//                 headerTitleAlign: 'center',
-//                 headerLeft: () => (
-//                     <BackButton onPress={() => router.back()} /> // Botão de voltar
-//                 ),
-//             }} />
-//             <ScrollView>
-//             <View style={styles.container}>
-                
-//                 <ProductDetails product={product} />
-//             </View>
-//             </ScrollView>
-//             </>
-// >>>>>>> 46bfa60b9c3cde3ca14a466f8387759558cb7b9d
     );
 }
 

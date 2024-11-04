@@ -156,10 +156,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Orbitron_700Bold',
   },
 
-  itemWrapper2: {
-    width: screenWidth,
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontFamily: 'Orbitron_900Black',
-  },
+    itemWrapper2: {
+      width: screenWidth,
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontFamily: 'Orbitron_900Black',
+    },
 });

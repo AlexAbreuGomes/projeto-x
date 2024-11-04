@@ -8,7 +8,7 @@ export const useCategories = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://192.168.0.17:3000/categories'); // URL da sua API
+      const response = await axios.get('https://api-alexabreugomes-alexs-projects-91cb9f2f.vercel.app/categories'); // URL da sua API
       setCategories(response.data); // Atualiza o estado com as categorias recebidas
       setLoading(false); // Atualiza o estado de carregamento
     } catch (err) {

@@ -1,26 +1,34 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Modal, TextInput, Button, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';  // Importar o hook de navegação
-import useLoadFonts from '../../../hooks/useLoadFonts'; // Importa o hook personalizado
+import { useRouter } from 'expo-router';
+import { ButtonGeneric } from '../../../components/button-general';
 
 const { width } = Dimensions.get('window');
 
 export default function MenuPage() {
-    // const fontsLoaded = useLoadFonts(); // Usa o hook de carregamento de fontes
-
-    // if (!fontsLoaded) {
-    //     return null; // Retorna nulo até que as fontes sejam carregadas
-    //   }
-
-    const router = useRouter();  // Instanciar o hook para navegação
+    const router = useRouter();
+    const adminPassword = "12345"; // Defina a senha desejada
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [password, setPassword] = useState("");
 
     const handleProducts = () => {
-        router.push('/administrador')
+        setPassword(""); // Limpa o campo de senha
+        setModalVisible(true); // Exibe o modal para solicitar a senha
+    };
+
+    const verifyPassword = () => {
+        if (password === adminPassword) {
+            setModalVisible(false); // Fecha o modal
+            router.push('/admin/administrador'); // Navega para a página de administrador
+        } else {
+            Alert.alert("Senha incorreta", "A senha digitada está incorreta. Tente novamente.");
+            setPassword(""); // Limpa o campo de senha
+        }
     };
 
     const handleAbout = () => {
-        console.log('Navegando para Sobre Nós');
+        router.push('/sobre');
     };
 
     const handleCart = () => {
@@ -28,13 +36,13 @@ export default function MenuPage() {
     };
 
     const handleContact = () => {
-        router.push('/contato');  // Navegar para a página de Contato
+        router.push('/contato');
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Menu</Text>
-            
+
             <View style={styles.menuContainer}>
                 <TouchableOpacity onPress={handleProducts} style={styles.menuButton}>
                     <Text style={styles.menuButtonText}>Administrador</Text>
@@ -44,14 +52,44 @@ export default function MenuPage() {
                     <Text style={styles.menuButtonText}>Sobre Nós</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={handleCart} style={styles.menuButton}>
+                {/* <TouchableOpacity onPress={handleCart} style={styles.menuButton}>
                     <Text style={styles.menuButtonText}>Carrinho</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 <TouchableOpacity onPress={handleContact} style={styles.menuButton}>
                     <Text style={styles.menuButtonText}>Contato</Text>
                 </TouchableOpacity>
             </View>
+
+            {/* Modal para solicitar a senha */}
+            <Modal
+                visible={isModalVisible}
+                transparent={true}
+                animationType="slide"
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.modalTitle}>Digite a senha de acesso</Text>
+                        <TextInput
+                            style={styles.input}
+
+                            placeholder="Digite sua SENHA"
+                            secureTextEntry
+                            value={password}
+                            onChangeText={setPassword}
+                        />
+                        <ButtonGeneric label="Confirmar" onPress={verifyPassword} />
+
+                        <ButtonGeneric label="Cancelar" onPress={() => {
+                            setModalVisible(false);
+                            setPassword(""); 
+                            // Limpa o campo de senha ao cancelar
+                        }} />
+
+                    </View>
+                </View>
+            </Modal>
         </SafeAreaView>
     );
 }
@@ -91,4 +129,35 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: 'Orbitron_600SemiBold',
     },
+    modalContainer: {
+        flex: 1,
+
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        width: width * 0.95,
+        padding: 20,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        alignItems: 'center',
+        elevation: 10,
+    },
+    modalTitle: {
+        fontFamily: "Orbitron_600SemiBold",
+        fontSize: 18,
+        marginBottom: 15,
+    },
+    input: {
+
+        width: '100%',
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
+        marginBottom: 15,
+        textAlign: 'center',
+    },
 });
+

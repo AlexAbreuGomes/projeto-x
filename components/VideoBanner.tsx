@@ -1,6 +1,7 @@
 import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { router } from "expo-router";
 import { Banners } from '../types/product';
+import React from 'react';
 
 type Props = {
     product: Banners

@@ -6,28 +6,32 @@ type ButtonShopProps = {
     label: string;               // Texto do botão
     url?: string;                // URL opcional para navegação externa
     onPress?: () => void;        // Função de ação local opcional
+    disabled?: boolean;           // Propriedade para desabilitar o botão
 };
 
 const { width } = Dimensions.get('window');
 
-export const ButtonGeneric = ({label, url, onPress }: ButtonShopProps )=> {
+export const ButtonGeneric = ({label, url, onPress, disabled = false }: ButtonShopProps )=> {
     const handlePress = () => {
+        if (disabled) return; // Não faz nada se o botão estiver desabilitado
+
         if (url) {
             Linking.openURL(url);
-        }else if (onPress){
+        } else if (onPress) {
             onPress();
         }
-    }
+    };
 
     return (
         <Pressable
             onPress={handlePress}
             style={({ pressed }) => [
                 {
-                    backgroundColor: pressed ?'rgb(36, 204, 2)'  : 'rgb(3, 97, 221)',
+                    backgroundColor: disabled ? 'gray' : (pressed ? 'rgb(36, 204, 2)' : 'rgb(3, 97, 221)'),
                 },
                 styles.button
             ]}
+            disabled={disabled} // Desabilita o Pressable se a propriedade estiver true
         >
             <Text style={styles.buttonText}>{label}</Text>
         </Pressable>
